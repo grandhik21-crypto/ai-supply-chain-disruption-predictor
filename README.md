@@ -24,12 +24,20 @@ A production-quality foundation for predicting supply chain disruptions. The app
 ├── config/                     # Application settings
 │   └── settings.py
 ├── src/                        # Core business logic
-│   ├── data/                   # Data providers
+│   ├── data/                   # Data ingestion & providers
+│   │   ├── data_loader.py      # CSV ingestion pipeline
+│   │   ├── preprocessing.py    # Validation & cleaning
+│   │   ├── csv_provider.py     # CSV-backed data provider
 │   │   └── placeholder_provider.py
 │   ├── models/                 # Domain models
 │   │   └── metrics.py
-│   └── services/               # Analytics services
-│       └── analytics_service.py
+│   ├── services/               # Analytics services
+│   │   └── analytics_service.py
+│   └── utils/                  # Logging & shared utilities
+│       └── logging_config.py
+├── data/
+│   └── raw/
+│       └── supply_chain.csv    # Sample dataset
 ├── .streamlit/
 │   └── config.toml             # Streamlit theme & config
 └── requirements.txt

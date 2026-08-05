@@ -2,17 +2,35 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pandas as pd
 
+from src.data.csv_provider import CsvDataProvider
+from src.data.data_loader import DEFAULT_DATA_PATH
 from src.data.placeholder_provider import PlaceholderDataProvider
 from src.models.metrics import KPIMetrics, SupplierRecord
+
+DataProvider = PlaceholderDataProvider | CsvDataProvider
 
 
 class SupplyChainAnalyticsService:
     """High-level service exposing supply chain analytics to the UI layer."""
 
-    def __init__(self, data_provider: PlaceholderDataProvider | None = None) -> None:
-        self._provider = data_provider or PlaceholderDataProvider()
+    def __init__(
+        self,
+        data_provider: DataProvider | None = None,
+        *,
+        use_csv: bool = False,
+        csv_path: Path | str | None = None,
+    ) -> None:
+        if data_provider is not None:
+            self._provider = data_provider
+        elif use_csv or csv_path is not None:
+            path = csv_path or DEFAULT_DATA_PATH
+            self._provider = CsvDataProvider(file_path=path)
+        else:
+            self._provider = PlaceholderDataProvider()
 
     def get_kpi_metrics(self) -> KPIMetrics:
         """Fetch aggregate KPI metrics."""
