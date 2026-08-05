@@ -1,7 +1,6 @@
 """
-Streamlit UI package root.
+The web app folder.
 
-Contains the web-facing layer of the application: the main entry point,
-reusable UI components (sidebar, KPI cards, charts), and page classes
-that render each screen in the dashboard.
+Everything the user sees in the browser lives here:
+pages, charts, sidebar, and KPI cards.
 """

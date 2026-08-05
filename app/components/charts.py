@@ -1,8 +1,8 @@
 """
-Plotly chart factory for the web dashboard.
+Makes all the charts you see on the website.
 
-Creates styled, consistent Plotly figures (line, bar, area, scatter, heatmap)
-used across Dashboard, Supplier Analysis, and Model Insights pages.
+Builds line charts, bar charts, scatter plots, and heatmaps
+used on the Dashboard, Supplier, and Model pages.
 """
 
 from __future__ import annotations

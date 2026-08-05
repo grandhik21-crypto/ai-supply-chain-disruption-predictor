@@ -1,8 +1,8 @@
 """
-Domain models for supply chain metrics and entities.
+Defines the main data types.
 
-Defines KPIMetrics (the four dashboard KPIs) and SupplierRecord (supplier
-rows displayed on the Supplier Analysis page and used in charts).
+KPIMetrics = the four headline numbers on the Dashboard.
+SupplierRecord = one row of info about a single supplier.
 """
 
 from dataclasses import dataclass

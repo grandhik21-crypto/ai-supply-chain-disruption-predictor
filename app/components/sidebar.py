@@ -1,8 +1,8 @@
 """
-Sidebar navigation component for the web dashboard.
+The left menu on the website.
 
-Renders the left sidebar with app branding, page links (Dashboard, Supplier
-Analysis, Model Insights, About), and demo filter controls.
+Shows the app name and lets you switch between
+Dashboard, Supplier Analysis, Model Insights, and About.
 """
 
 from __future__ import annotations

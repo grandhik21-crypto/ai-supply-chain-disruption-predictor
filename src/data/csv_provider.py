@@ -1,8 +1,8 @@
 """
-CSV-backed data provider for the web application.
+Gets data from a real CSV file for the website.
 
-Uses the ingestion pipeline to load real CSV data and exposes the same
-interface as PlaceholderDataProvider so dashboard pages can consume it.
+Reads and cleans the CSV, then provides the same kind of
+numbers and tables that the demo data provides.
 """
 
 from __future__ import annotations

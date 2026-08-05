@@ -1,8 +1,8 @@
 """
-Reusable Streamlit UI components package.
+Reusable pieces of the website UI.
 
-Exports shared building blocks used across dashboard pages: sidebar navigation,
-KPI metric cards, and Plotly chart factories.
+Groups the sidebar, KPI cards, and chart helpers
+that multiple pages share.
 """
 
 from app.components.charts import ChartFactory

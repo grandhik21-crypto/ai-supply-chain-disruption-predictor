@@ -1,8 +1,8 @@
 """
-Executive Dashboard page for the web application.
+The home page of the website.
 
-Main landing page showing KPI cards, risk/inventory/sentiment trend charts,
-disruption forecasts, and a quick supplier risk summary.
+Shows the main numbers (KPIs), trend charts,
+forecasts, and a quick supplier summary.
 """
 
 from __future__ import annotations

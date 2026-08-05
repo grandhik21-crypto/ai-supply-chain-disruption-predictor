@@ -1,8 +1,8 @@
 """
-Logging configuration for the web application.
+Sets up text messages that print while the app runs.
 
-Sets up structured console logging used by the data loader, preprocessing
-pipeline, and backend services during CSV ingestion and analytics.
+When data is loading or cleaning, this controls
+what info and warnings show up in the terminal.
 """
 
 from __future__ import annotations

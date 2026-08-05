@@ -1,8 +1,8 @@
 """
-KPI card component for the web dashboard.
+The four number boxes on the Dashboard page.
 
-Displays the four headline metrics (Risk Score, Lead Time, Inventory Coverage,
-Sentiment Score) as Streamlit metric cards on the Dashboard page.
+Shows Risk Score, Lead Time, Inventory Coverage,
+and Sentiment Score at the top of the home screen.
 """
 
 from __future__ import annotations

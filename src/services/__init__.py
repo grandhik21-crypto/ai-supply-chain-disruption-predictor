@@ -1,8 +1,8 @@
 """
-Analytics services package for the web application.
+The service that pages call to get data.
 
-Exports the service layer that dashboard pages call to fetch KPIs, charts,
-and supplier data without knowing the underlying data source.
+Pages ask this for KPIs, charts, and supplier tables
+instead of talking to the data files directly.
 """
 
 from src.services.analytics_service import SupplyChainAnalyticsService

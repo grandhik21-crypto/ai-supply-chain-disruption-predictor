@@ -1,8 +1,8 @@
 """
-Data preprocessing pipeline for the web application.
+Cleans up raw spreadsheet data.
 
-Validates required CSV columns, parses dates, coerces numeric types, and
-imputes missing values before data reaches the dashboard charts and KPIs.
+Checks that required columns exist, fixes dates,
+fills in missing numbers, and removes bad rows.
 """
 
 from __future__ import annotations

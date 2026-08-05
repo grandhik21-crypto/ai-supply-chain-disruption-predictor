@@ -1,8 +1,8 @@
 """
-Domain models package for the web application.
+Data shape definitions used across the app.
 
-Exports typed data structures (KPIMetrics, SupplierRecord) shared between
-data providers, services, and dashboard UI components.
+Defines what a KPI and a Supplier look like
+so all parts of the code use the same structure.
 """
 
 from src.models.metrics import KPIMetrics, SupplierRecord

@@ -1,8 +1,8 @@
 """
-Supplier Analysis page for the web application.
+The Suppliers page.
 
-Displays supplier risk scatter plots, regional lead-time comparisons,
-a high-risk supplier table, and the full supplier registry.
+Shows which suppliers are risky, how long they take to deliver,
+and a full table of all suppliers.
 """
 
 from __future__ import annotations

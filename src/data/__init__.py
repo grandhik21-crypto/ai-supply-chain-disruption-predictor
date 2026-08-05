@@ -1,8 +1,8 @@
 """
-Data access layer for the web application.
+All the data-related code.
 
-Exports CSV loaders, preprocessing utilities, and data providers that
-supply cleaned DataFrames and metrics to the dashboard pages.
+Loads CSV files, cleans the data, and provides it
+to the website pages.
 """
 
 from src.data.csv_provider import CsvDataProvider

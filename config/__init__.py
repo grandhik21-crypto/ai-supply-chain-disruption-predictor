@@ -1,7 +1,7 @@
 """
-Application configuration package.
+App settings folder.
 
-Re-exports settings used by the web dashboard (app title, page names, KPI labels).
+Holds basic info like the app name, page list, and KPI labels.
 """
 
 from config.settings import AppSettings, get_settings

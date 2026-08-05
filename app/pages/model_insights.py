@@ -1,8 +1,8 @@
 """
-Model Insights page for the web application.
+The AI Model page.
 
-Shows ML model performance metrics, feature importance, confusion matrix,
-and disruption probability forecasts for explainability.
+Shows how the prediction model works: which factors matter most,
+how accurate it is, and future disruption forecasts.
 """
 
 from __future__ import annotations

@@ -1,8 +1,8 @@
 """
-CSV data loader for the web application.
+Reads a CSV file and returns clean data.
 
-Reads supply chain CSV files from disk, runs them through the preprocessing
-pipeline, and returns a cleaned DataFrame ready for dashboard analytics.
+Opens the supply chain spreadsheet, checks it looks right,
+fixes missing values, and hands back ready-to-use data.
 """
 
 from __future__ import annotations

@@ -1,8 +1,8 @@
 """
-Analytics service facade for the web application.
+The main helper pages use to fetch all their data.
 
-Single entry point used by all dashboard pages to fetch KPIs, supplier tables,
-trend data, and model outputs from either placeholder or CSV data providers.
+Call this to get KPI numbers, supplier lists, and chart data.
+It can use either demo data or a real CSV file.
 """
 
 from __future__ import annotations

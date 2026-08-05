@@ -1,6 +1,6 @@
 """
-Core business logic package (backend layer).
+The backend (behind-the-scenes) code.
 
-Contains data ingestion, domain models, analytics services, and utilities
-that power the Streamlit dashboard. The UI layer in app/ consumes this package.
+Handles data loading, number crunching, and business logic.
+The website in app/ uses this code to get its data.
 """

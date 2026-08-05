@@ -1,8 +1,8 @@
 """
-Centralized settings and constants for the web application.
+App name, version, and labels used across the website.
 
-Defines app title, version, navigation page list, KPI label mappings, and
-the AppSettings dataclass consumed by the Streamlit UI and services.
+Stores things like the window title, menu page names,
+and what each KPI card is called.
 """
 
 from dataclasses import dataclass, field

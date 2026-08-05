@@ -1,8 +1,8 @@
 """
-Abstract base class for all Streamlit dashboard pages.
+The template all pages share.
 
-Provides a shared page layout (header, subtitle, divider) and injects the
-analytics service and chart factory used by every page subclass.
+Every page uses this for the same title bar and setup,
+so they all look consistent.
 """
 
 from __future__ import annotations

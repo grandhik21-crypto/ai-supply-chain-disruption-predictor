@@ -1,7 +1,7 @@
 """
-Streamlit page modules for the web dashboard.
+Lists all the pages in the website.
 
-Exports the four page classes that render each navigable screen in the app.
+Each page is its own file: Dashboard, Suppliers, Model Insights, and About.
 """
 
 from app.pages.about import AboutPage

@@ -1,8 +1,8 @@
 """
-Placeholder data provider for the web application.
+Makes fake demo data for the website.
 
-Generates synthetic supply chain data (fixed random seed) used by the
-dashboard when no live CSV or API source is configured.
+When no real CSV file is loaded, this creates sample suppliers,
+scores, and charts so you can still explore the app.
 """
 
 from __future__ import annotations

@@ -1,8 +1,8 @@
 """
-Streamlit application entry point.
+Starts the web app.
 
-Bootstraps the web app: configures page layout, injects global CSS, renders
-the sidebar navigator, and routes the user to the selected dashboard page.
+This is the main file you run to open the website in your browser.
+It shows the sidebar menu and opens the page you pick (Dashboard, Suppliers, etc.).
 Run with: python3 -m streamlit run app/main.py
 """
 

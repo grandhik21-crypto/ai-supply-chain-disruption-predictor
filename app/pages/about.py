@@ -1,8 +1,8 @@
 """
-About page for the web application.
+The About page.
 
-Presents project overview, key capabilities, architecture diagram, tech
-stack, and development roadmap to end users.
+Tells you what this project does, what tools it uses,
+and what features are planned next.
 """
 
 from __future__ import annotations

@@ -1,7 +1,8 @@
 """
-Shared utilities package for the web application.
+Small shared helper tools.
 
-Exports logging helpers used by the data ingestion pipeline and backend services.
+Right now this mainly holds the logging setup
+used when loading and cleaning data.
 """
 
 from src.utils.logging_config import get_logger, setup_logging
