@@ -1,4 +1,8 @@
-"""Streamlit page modules."""
+"""
+Streamlit page modules for the web dashboard.
+
+Exports the four page classes that render each navigable screen in the app.
+"""
 
 from app.pages.about import AboutPage
 from app.pages.dashboard import DashboardPage

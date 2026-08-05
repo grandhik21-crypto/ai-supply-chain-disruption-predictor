@@ -1,4 +1,9 @@
-"""Centralized application settings and constants."""
+"""
+Centralized settings and constants for the web application.
+
+Defines app title, version, navigation page list, KPI label mappings, and
+the AppSettings dataclass consumed by the Streamlit UI and services.
+"""
 
 from dataclasses import dataclass, field
 from typing import Final

@@ -1,4 +1,9 @@
-"""Generates reproducible placeholder datasets for development and demos."""
+"""
+Placeholder data provider for the web application.
+
+Generates synthetic supply chain data (fixed random seed) used by the
+dashboard when no live CSV or API source is configured.
+"""
 
 from __future__ import annotations
 

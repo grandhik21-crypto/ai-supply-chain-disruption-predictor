@@ -1,4 +1,9 @@
-"""Orchestrates data access and analytics for the dashboard."""
+"""
+Analytics service facade for the web application.
+
+Single entry point used by all dashboard pages to fetch KPIs, supplier tables,
+trend data, and model outputs from either placeholder or CSV data providers.
+"""
 
 from __future__ import annotations
 

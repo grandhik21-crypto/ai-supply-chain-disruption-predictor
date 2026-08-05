@@ -1,4 +1,9 @@
-"""KPI card rendering component."""
+"""
+KPI card component for the web dashboard.
+
+Displays the four headline metrics (Risk Score, Lead Time, Inventory Coverage,
+Sentiment Score) as Streamlit metric cards on the Dashboard page.
+"""
 
 from __future__ import annotations
 

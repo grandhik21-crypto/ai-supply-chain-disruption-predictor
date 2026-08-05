@@ -1,4 +1,9 @@
-"""Data provider backed by ingested CSV files."""
+"""
+CSV-backed data provider for the web application.
+
+Uses the ingestion pipeline to load real CSV data and exposes the same
+interface as PlaceholderDataProvider so dashboard pages can consume it.
+"""
 
 from __future__ import annotations
 

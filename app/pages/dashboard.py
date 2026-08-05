@@ -1,4 +1,9 @@
-"""Executive dashboard page."""
+"""
+Executive Dashboard page for the web application.
+
+Main landing page showing KPI cards, risk/inventory/sentiment trend charts,
+disruption forecasts, and a quick supplier risk summary.
+"""
 
 from __future__ import annotations
 

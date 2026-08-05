@@ -1,4 +1,10 @@
-"""Streamlit application entry point."""
+"""
+Streamlit application entry point.
+
+Bootstraps the web app: configures page layout, injects global CSS, renders
+the sidebar navigator, and routes the user to the selected dashboard page.
+Run with: python3 -m streamlit run app/main.py
+"""
 
 from __future__ import annotations
 

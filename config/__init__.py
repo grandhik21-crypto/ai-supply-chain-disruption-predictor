@@ -1,4 +1,8 @@
-"""Application configuration package."""
+"""
+Application configuration package.
+
+Re-exports settings used by the web dashboard (app title, page names, KPI labels).
+"""
 
 from config.settings import AppSettings, get_settings
 

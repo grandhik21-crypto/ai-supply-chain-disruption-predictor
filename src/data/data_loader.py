@@ -1,4 +1,9 @@
-"""CSV data ingestion for supply chain datasets."""
+"""
+CSV data loader for the web application.
+
+Reads supply chain CSV files from disk, runs them through the preprocessing
+pipeline, and returns a cleaned DataFrame ready for dashboard analytics.
+"""
 
 from __future__ import annotations
 

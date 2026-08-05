@@ -1,4 +1,9 @@
-"""Centralized logging configuration for the application."""
+"""
+Logging configuration for the web application.
+
+Sets up structured console logging used by the data loader, preprocessing
+pipeline, and backend services during CSV ingestion and analytics.
+"""
 
 from __future__ import annotations
 

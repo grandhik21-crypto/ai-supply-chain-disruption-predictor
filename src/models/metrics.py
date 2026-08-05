@@ -1,4 +1,9 @@
-"""Domain models representing supply chain metrics and entities."""
+"""
+Domain models for supply chain metrics and entities.
+
+Defines KPIMetrics (the four dashboard KPIs) and SupplierRecord (supplier
+rows displayed on the Supplier Analysis page and used in charts).
+"""
 
 from dataclasses import dataclass
 from datetime import date

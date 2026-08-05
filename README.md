@@ -8,6 +8,8 @@ A production-quality foundation for predicting supply chain disruptions. The app
 
 ## Project Structure
 
+Each source file includes a module docstring describing its role in the web application.
+
 ```
 ├── app/                        # Streamlit UI layer
 │   ├── main.py                 # Application entry point & router
@@ -63,6 +65,28 @@ chmod +x run.sh
 The app opens at `http://localhost:8501`.
 
 > **Note:** On this environment, `python` and bare `streamlit` may not be found. Always use `python3` and `python3 -m streamlit` instead.
+
+## Data Ingestion Pipeline
+
+Load and clean CSV supply chain data with validation, date parsing, and missing-value handling:
+
+```python
+from src.data import SupplyChainDataLoader
+
+loader = SupplyChainDataLoader()
+df = loader.load()  # Returns a cleaned DataFrame
+```
+
+Use CSV-backed analytics in the dashboard service:
+
+```python
+from src.services.analytics_service import SupplyChainAnalyticsService
+
+service = SupplyChainAnalyticsService(use_csv=True)
+kpis = service.get_kpi_metrics()
+```
+
+Required CSV columns: `supplier_id`, `supplier_name`, `region`, `category`, `risk_score`, `lead_time_days`, `inventory_coverage_days`, `on_time_delivery_pct`, `sentiment_score`, `order_date`, `last_disruption`.
 
 ## Pages
 

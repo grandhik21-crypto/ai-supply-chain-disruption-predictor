@@ -1,4 +1,9 @@
-"""About page with project information."""
+"""
+About page for the web application.
+
+Presents project overview, key capabilities, architecture diagram, tech
+stack, and development roadmap to end users.
+"""
 
 from __future__ import annotations
 

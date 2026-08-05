@@ -1,4 +1,9 @@
-"""Supplier analysis page."""
+"""
+Supplier Analysis page for the web application.
+
+Displays supplier risk scatter plots, regional lead-time comparisons,
+a high-risk supplier table, and the full supplier registry.
+"""
 
 from __future__ import annotations
 

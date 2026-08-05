@@ -1,4 +1,9 @@
-"""Abstract base class for Streamlit pages."""
+"""
+Abstract base class for all Streamlit dashboard pages.
+
+Provides a shared page layout (header, subtitle, divider) and injects the
+analytics service and chart factory used by every page subclass.
+"""
 
 from __future__ import annotations
 

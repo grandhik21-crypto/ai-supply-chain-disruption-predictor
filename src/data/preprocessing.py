@@ -1,4 +1,9 @@
-"""Reusable preprocessing utilities for supply chain datasets."""
+"""
+Data preprocessing pipeline for the web application.
+
+Validates required CSV columns, parses dates, coerces numeric types, and
+imputes missing values before data reaches the dashboard charts and KPIs.
+"""
 
 from __future__ import annotations
 

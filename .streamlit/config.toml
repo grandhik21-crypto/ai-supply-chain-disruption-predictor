@@ -1,3 +1,6 @@
+# Streamlit configuration for the Supply Chain Disruption Predictor web app.
+# Controls theme colors, server behavior, and browser settings.
+
 [server]
 headless = true
 

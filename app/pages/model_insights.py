@@ -1,4 +1,9 @@
-"""Model insights and explainability page."""
+"""
+Model Insights page for the web application.
+
+Shows ML model performance metrics, feature importance, confusion matrix,
+and disruption probability forecasts for explainability.
+"""
 
 from __future__ import annotations
 
