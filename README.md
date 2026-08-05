@@ -39,13 +39,22 @@ A production-quality foundation for predicting supply chain disruptions. The app
 
 ```bash
 # Install dependencies
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
-# Run the dashboard
-streamlit run app/main.py
+# Run the dashboard (use python3 -m — the streamlit command may not be on PATH)
+python3 -m streamlit run app/main.py
+```
+
+Or use the helper script:
+
+```bash
+chmod +x run.sh
+./run.sh
 ```
 
 The app opens at `http://localhost:8501`.
+
+> **Note:** On this environment, `python` and bare `streamlit` may not be found. Always use `python3` and `python3 -m streamlit` instead.
 
 ## Pages
 
