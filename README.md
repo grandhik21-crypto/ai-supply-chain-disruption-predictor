@@ -38,6 +38,8 @@ Each source file has:
 │   │   └── sentiment.py
 │   ├── nlp/                    # NLP modules
 │   │   └── sentiment.py        # FinBERT sentiment analysis
+│   ├── features/               # Feature engineering for ML
+│   │   └── feature_engineering.py
 │   ├── services/               # Analytics services
 │   │   └── analytics_service.py
 │   └── utils/                  # Logging & shared utilities
@@ -118,6 +120,34 @@ python3 scripts/run_sentiment.py
 2. Score each article → `sentiment_label`, `confidence`, `sentiment_score` (0–1)
 3. Aggregate mean score per supplier per day
 4. Save to `data/processed/daily_supplier_sentiment.csv` and `article_sentiment.csv`
+
+## Feature Engineering Pipeline
+
+Merge supply chain + sentiment and engineer ML features:
+
+```bash
+python3 scripts/run_feature_engineering.py
+```
+
+```python
+from src.features.feature_engineering import FeatureEngineeringPipeline
+
+pipeline = FeatureEngineeringPipeline()
+ml_df = pipeline.run_pipeline()
+```
+
+**Join keys:** `supplier_id` + `date`
+
+**Engineered features:**
+- `rolling_lead_time_7d` — 7-day rolling mean lead time
+- `lead_time_variance_7d` — 7-day rolling variance of lead time
+- `inventory_coverage` — days of inventory buffer
+- `supplier_reliability` — on-time delivery rate (0–1)
+- `rolling_sentiment_7d` — 7-day rolling mean sentiment
+- `sentiment_velocity` — day-over-day sentiment change
+- `negative_news_count_7d` — rolling count of negative articles
+
+Output: `data/processed/ml_features.csv`
 
 ## Pages
 
