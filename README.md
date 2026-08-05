@@ -19,7 +19,7 @@ Each source file has:
 │   │   ├── sidebar.py          # Sidebar navigation
 │   │   ├── kpi_cards.py        # KPI metric cards
 │   │   └── charts.py           # Plotly chart factory
-│   └── pages/                  # Page classes (OOP)
+│   └── views/                  # Page classes (OOP; not Streamlit multipage)
 │       ├── base_page.py        # Abstract base page
 │       ├── dashboard.py        # Executive dashboard
 │       ├── supplier_analysis.py

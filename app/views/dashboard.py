@@ -12,7 +12,7 @@ import streamlit as st  # Website UI library
 # Import the class that draws the four KPI number boxes
 from app.components.kpi_cards import KPICardRenderer
 # Import the shared page template all pages extend
-from app.pages.base_page import BasePage
+from app.views.base_page import BasePage
 
 
 class DashboardPage(BasePage):

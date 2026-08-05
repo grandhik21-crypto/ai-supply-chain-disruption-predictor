@@ -10,7 +10,7 @@ from __future__ import annotations  # Modern type hint support
 import streamlit as st  # Website UI library
 
 # Import the shared page template
-from app.pages.base_page import BasePage
+from app.views.base_page import BasePage
 
 
 class ModelInsightsPage(BasePage):

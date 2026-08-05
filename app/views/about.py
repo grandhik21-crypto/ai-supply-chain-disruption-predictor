@@ -9,7 +9,7 @@ from __future__ import annotations  # Modern type hint support
 
 import streamlit as st  # Website UI library
 
-from app.pages.base_page import BasePage  # Shared page template
+from app.views.base_page import BasePage  # Shared page template
 from config.settings import get_settings  # App name and version
 
 
@@ -69,7 +69,7 @@ supply_chain_predictor/
 ├── app/                    # Streamlit UI layer
 │   ├── main.py             # Application entry point
 │   ├── components/         # Reusable UI components
-│   └── pages/              # Page classes (OOP)
+│   └── views/              # Page classes (OOP)
 ├── config/                 # Settings and constants
 ├── src/
 │   ├── data/               # Data providers

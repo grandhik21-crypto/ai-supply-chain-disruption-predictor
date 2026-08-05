@@ -40,13 +40,12 @@ class SidebarNavigator:
             )
 
             st.markdown("---")  # Horizontal divider line
-            st.caption("Navigation")  # Small label above page buttons
 
             # Radio buttons let the user pick which page to view
+            # Use these buttons (not any other Streamlit page links) to switch screens
             selected = st.radio(
-                label="Pages",  # Internal label (hidden from user)
+                label="Go to page",
                 options=list(self._settings.pages),  # Dashboard, Supplier Analysis, etc.
-                label_visibility="collapsed",  # Hide the "Pages" label text
                 key="nav_page",  # Unique ID so Streamlit remembers the choice
             )
 

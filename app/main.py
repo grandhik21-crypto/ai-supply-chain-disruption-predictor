@@ -22,10 +22,10 @@ import streamlit as st  # The library that builds the website
 # Import the sidebar menu builder
 from app.components.sidebar import SidebarNavigator
 # Import each page class the user can navigate to
-from app.pages.about import AboutPage
-from app.pages.dashboard import DashboardPage
-from app.pages.model_insights import ModelInsightsPage
-from app.pages.supplier_analysis import SupplierAnalysisPage
+from app.views.about import AboutPage
+from app.views.dashboard import DashboardPage
+from app.views.model_insights import ModelInsightsPage
+from app.views.supplier_analysis import SupplierAnalysisPage
 # Import app settings (title, icon, page list)
 from config.settings import get_settings
 
@@ -38,12 +38,12 @@ class Application:
         self._settings = get_settings()
         # Create the sidebar navigator using those settings
         self._navigator = SidebarNavigator(self._settings)
-        # Map each menu name to its page class
-        self._pages: dict[str, object] = {
-            "Dashboard": DashboardPage(),
-            "Supplier Analysis": SupplierAnalysisPage(),
-            "Model Insights": ModelInsightsPage(),
-            "About": AboutPage(),
+        # Map each menu name to a page factory (creates a fresh page when selected)
+        self._page_factories = {
+            "Dashboard": DashboardPage,
+            "Supplier Analysis": SupplierAnalysisPage,
+            "Model Insights": ModelInsightsPage,
+            "About": AboutPage,
         }
 
     def run(self) -> None:
@@ -60,10 +60,14 @@ class Application:
         self._inject_global_styles()
         # Show sidebar and get which page the user picked
         selected_page = self._navigator.render()
-        # Look up the page object; fall back to Dashboard if not found
-        page = self._pages.get(selected_page, DashboardPage())
-        # Draw the selected page on screen
-        page.render()
+
+        # Create and draw the selected page (fallback to Dashboard)
+        page_factory = self._page_factories.get(selected_page, DashboardPage)
+        try:
+            page_factory().render()
+        except Exception as exc:  # Show errors on the page instead of a blank screen
+            st.error(f"Could not load the **{selected_page}** page.")
+            st.exception(exc)
 
     @staticmethod
     def _inject_global_styles() -> None:
