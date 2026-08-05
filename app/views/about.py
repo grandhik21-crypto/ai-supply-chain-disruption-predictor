@@ -67,13 +67,15 @@ class AboutPage(BasePage):
             """
 supply_chain_predictor/
 ├── app/                    # Streamlit UI layer
-│   ├── main.py             # Application entry point
-│   ├── components/         # Reusable UI components
-│   └── views/              # Page classes (OOP)
+│   ├── main.py             # Home / Dashboard
+│   ├── pages/              # Sidebar page links
+│   ├── views/              # Real page UI code
+│   └── components/         # Charts, KPI cards
 ├── config/                 # Settings and constants
 ├── src/
 │   ├── data/               # Data providers
-│   ├── models/             # Domain models
+│   ├── nlp/                # Sentiment analysis
+│   ├── features/           # Feature engineering
 │   └── services/           # Business logic
 └── requirements.txt
             """.strip(),

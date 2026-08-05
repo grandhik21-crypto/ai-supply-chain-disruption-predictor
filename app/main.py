@@ -1,104 +1,34 @@
 """
-Starts the web app.
+Starts the web app (Home / Dashboard page).
 
-This is the main file you run to open the website in your browser.
-It shows the sidebar menu and opens the page you pick (Dashboard, Suppliers, etc.).
+Streamlit also auto-loads other screens from the app/pages/ folder.
 Run with: python3 -m streamlit run app/main.py
 """
 
-from __future__ import annotations  # Lets us use modern type hints in older Python versions
+from __future__ import annotations
 
-import sys  # Used to update Python's module search path
-from pathlib import Path  # Helps work with file and folder paths
+from app.page_setup import (
+    configure_page,
+    ensure_project_root_on_path,
+    inject_global_styles,
+    render_shared_sidebar,
+)
 
-# Find the project root folder (one level above the app/ folder)
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-# Add project root to Python path so imports like "from config..." work
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+# Make sure "from config..." and "from src..." imports work
+ensure_project_root_on_path()
 
-import streamlit as st  # The library that builds the website
-
-# Import the sidebar menu builder
-from app.components.sidebar import SidebarNavigator
-# Import each page class the user can navigate to
-from app.views.about import AboutPage
-from app.views.dashboard import DashboardPage
-from app.views.model_insights import ModelInsightsPage
-from app.views.supplier_analysis import SupplierAnalysisPage
-# Import app settings (title, icon, page list)
-from config.settings import get_settings
-
-
-class Application:
-    """Main application controller that wires navigation to page classes."""
-
-    def __init__(self) -> None:
-        # Load app settings (name, version, pages)
-        self._settings = get_settings()
-        # Create the sidebar navigator using those settings
-        self._navigator = SidebarNavigator(self._settings)
-        # Map each menu name to a page factory (creates a fresh page when selected)
-        self._page_factories = {
-            "Dashboard": DashboardPage,
-            "Supplier Analysis": SupplierAnalysisPage,
-            "Model Insights": ModelInsightsPage,
-            "About": AboutPage,
-        }
-
-    def run(self) -> None:
-        """Configure Streamlit and render the selected page."""
-        # Set browser tab title, icon, wide layout, and open sidebar by default
-        st.set_page_config(
-            page_title=self._settings.title,
-            page_icon=self._settings.icon,
-            layout="wide",
-            initial_sidebar_state="expanded",
-        )
-
-        # Add custom CSS styling to the page
-        self._inject_global_styles()
-        # Show sidebar and get which page the user picked
-        selected_page = self._navigator.render()
-
-        # Create and draw the selected page (fallback to Dashboard)
-        page_factory = self._page_factories.get(selected_page, DashboardPage)
-        try:
-            page_factory().render()
-        except Exception as exc:  # Show errors on the page instead of a blank screen
-            st.error(f"Could not load the **{selected_page}** page.")
-            st.exception(exc)
-
-    @staticmethod
-    def _inject_global_styles() -> None:
-        """Inject minimal CSS for a polished dashboard appearance."""
-        # Insert CSS rules to style padding, metric numbers, and sidebar color
-        st.markdown(
-            """
-            <style>
-                .block-container {
-                    padding-top: 2rem;
-                    padding-bottom: 2rem;
-                }
-                [data-testid="stMetricValue"] {
-                    font-size: 1.75rem;
-                    font-weight: 700;
-                }
-                [data-testid="stSidebar"] {
-                    background-color: #f8fafc;
-                }
-            </style>
-            """,
-            unsafe_allow_html=True,  # Allow raw HTML/CSS in markdown
-        )
+from app.views.dashboard import DashboardPage  # noqa: E402
+from config.settings import get_settings  # noqa: E402
 
 
 def main() -> None:
-    """Run the Streamlit application."""
-    # Create the app and start it
-    Application().run()
+    """Show the Dashboard (home) page."""
+    settings = get_settings()
+    configure_page(settings.title, settings.icon)
+    inject_global_styles()
+    render_shared_sidebar()
+    DashboardPage().render()
 
 
-if __name__ == "__main__":
-    # Only run main() when this file is executed directly (not imported)
-    main()
+# Streamlit executes this whole file when you run: streamlit run app/main.py
+main()

@@ -14,14 +14,19 @@ Each source file has:
 
 ```
 ├── app/                        # Streamlit UI layer
-│   ├── main.py                 # Application entry point & router
+│   ├── main.py                 # Home page (Dashboard)
+│   ├── page_setup.py           # Shared sidebar/setup helpers
+│   ├── pages/                  # Streamlit sidebar page links
+│   │   ├── 1_Supplier_Analysis.py
+│   │   ├── 2_Model_Insights.py
+│   │   └── 3_About.py
 │   ├── components/             # Reusable UI components
-│   │   ├── sidebar.py          # Sidebar navigation
-│   │   ├── kpi_cards.py        # KPI metric cards
-│   │   └── charts.py           # Plotly chart factory
-│   └── views/                  # Page classes (OOP; not Streamlit multipage)
-│       ├── base_page.py        # Abstract base page
-│       ├── dashboard.py        # Executive dashboard
+│   │   ├── sidebar.py
+│   │   ├── kpi_cards.py
+│   │   └── charts.py
+│   └── views/                  # Real page UI code (OOP classes)
+│       ├── base_page.py
+│       ├── dashboard.py
 │       ├── supplier_analysis.py
 │       ├── model_insights.py
 │       └── about.py
