@@ -34,14 +34,19 @@ Each source file has:
 │   │   ├── csv_provider.py     # CSV-backed data provider
 │   │   └── placeholder_provider.py
 │   ├── models/                 # Domain models
-│   │   └── metrics.py
+│   │   ├── metrics.py
+│   │   └── sentiment.py
+│   ├── nlp/                    # NLP modules
+│   │   └── sentiment.py        # FinBERT sentiment analysis
 │   ├── services/               # Analytics services
 │   │   └── analytics_service.py
 │   └── utils/                  # Logging & shared utilities
 │       └── logging_config.py
 ├── data/
 │   └── raw/
-│       └── supply_chain.csv    # Sample dataset
+│       ├── supply_chain.csv    # Sample supplier dataset
+│       └── news_articles.csv   # Sample news for sentiment analysis
+│   └── processed/              # Sentiment pipeline output CSVs
 ├── .streamlit/
 │   └── config.toml             # Streamlit theme & config
 └── requirements.txt
@@ -89,6 +94,30 @@ kpis = service.get_kpi_metrics()
 ```
 
 Required CSV columns: `supplier_id`, `supplier_name`, `region`, `category`, `risk_score`, `lead_time_days`, `inventory_coverage_days`, `on_time_delivery_pct`, `sentiment_score`, `order_date`, `last_disruption`.
+
+## Sentiment Analysis (FinBERT)
+
+Analyze supplier news with Hugging Face FinBERT:
+
+```python
+from src.nlp.sentiment import SentimentAnalyzer, load_articles_from_csv
+
+articles = load_articles_from_csv("data/raw/news_articles.csv")
+analyzer = SentimentAnalyzer()
+daily_sentiment = analyzer.run_pipeline(articles)
+```
+
+Or run from the command line:
+
+```bash
+python3 scripts/run_sentiment.py
+```
+
+**Pipeline steps:**
+1. Load news articles (list or CSV)
+2. Score each article → `sentiment_label`, `confidence`, `sentiment_score` (0–1)
+3. Aggregate mean score per supplier per day
+4. Save to `data/processed/daily_supplier_sentiment.csv` and `article_sentiment.csv`
 
 ## Pages
 
