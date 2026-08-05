@@ -5,17 +5,22 @@ Call this to get KPI numbers, supplier lists, and chart data.
 It can use either demo data or a real CSV file.
 """
 
-from __future__ import annotations
+from __future__ import annotations  # Modern type hint support
 
-from pathlib import Path
+from pathlib import Path  # For file paths to CSV data
 
-import pandas as pd
+import pandas as pd  # Table data library
 
+# Provider that reads real CSV files
 from src.data.csv_provider import CsvDataProvider
+# Default path to the sample CSV file
 from src.data.data_loader import DEFAULT_DATA_PATH
+# Provider that generates fake demo data
 from src.data.placeholder_provider import PlaceholderDataProvider
+# Data types for KPIs and suppliers
 from src.models.metrics import KPIMetrics, SupplierRecord
 
+# Either provider type can be used behind this service
 DataProvider = PlaceholderDataProvider | CsvDataProvider
 
 
@@ -30,11 +35,14 @@ class SupplyChainAnalyticsService:
         csv_path: Path | str | None = None,
     ) -> None:
         if data_provider is not None:
+            # Use a provider passed in directly (for testing or custom setup)
             self._provider = data_provider
         elif use_csv or csv_path is not None:
+            # Load data from a CSV file instead of demo data
             path = csv_path or DEFAULT_DATA_PATH
             self._provider = CsvDataProvider(file_path=path)
         else:
+            # Default: use fake demo data
             self._provider = PlaceholderDataProvider()
 
     def get_kpi_metrics(self) -> KPIMetrics:
@@ -80,6 +88,7 @@ class SupplyChainAnalyticsService:
     def get_high_risk_suppliers(self, threshold: float = 70.0) -> pd.DataFrame:
         """Return suppliers exceeding the risk score threshold."""
         df = self.get_suppliers_dataframe()
+        # Filter rows where Risk Score >= threshold, sorted highest first
         return df[df["Risk Score"] >= threshold].sort_values(
             "Risk Score", ascending=False
         )
@@ -87,6 +96,7 @@ class SupplyChainAnalyticsService:
     def get_risk_summary(self) -> dict[str, float | int]:
         """Return summary statistics for supplier risk."""
         df = self.get_suppliers_dataframe()
+        # Build a dictionary of summary numbers for the Dashboard
         return {
             "supplier_count": len(df),
             "avg_risk_score": round(float(df["Risk Score"].mean()), 1),

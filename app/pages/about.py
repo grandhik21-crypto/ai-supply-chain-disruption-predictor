@@ -5,12 +5,12 @@ Tells you what this project does, what tools it uses,
 and what features are planned next.
 """
 
-from __future__ import annotations
+from __future__ import annotations  # Modern type hint support
 
-import streamlit as st
+import streamlit as st  # Website UI library
 
-from app.pages.base_page import BasePage
-from config.settings import get_settings
+from app.pages.base_page import BasePage  # Shared page template
+from config.settings import get_settings  # App name and version
 
 
 class AboutPage(BasePage):
@@ -18,15 +18,16 @@ class AboutPage(BasePage):
 
     @property
     def title(self) -> str:
-        return "About"
+        return "About"  # Page name in the header
 
     @property
     def icon(self) -> str:
-        return "ℹ️"
+        return "ℹ️"  # Info emoji
 
     def render_content(self) -> None:
-        settings = get_settings()
+        settings = get_settings()  # Load app title and version
 
+        # Main project description block
         st.markdown(
             f"""
             ### {settings.title}
@@ -39,10 +40,11 @@ class AboutPage(BasePage):
             """
         )
 
-        st.markdown("---")
-        st.markdown("### Key Capabilities")
+        st.markdown("---")  # Divider
+        st.markdown("### Key Capabilities")  # Section heading
 
-        capabilities = st.columns(3)
+        capabilities = st.columns(3)  # Three columns for feature cards
+        # List of (emoji, title, short description) for each feature
         items = [
             ("🔮", "Disruption Prediction", "Forecast supply chain risks using ML models."),
             ("📰", "Sentiment Analysis", "Monitor news and market signals in real time."),
@@ -51,14 +53,16 @@ class AboutPage(BasePage):
             ("🏭", "Supplier Scoring", "Rank suppliers by composite risk metrics."),
             ("📈", "Interactive Dashboards", "Explore insights with Plotly visualizations."),
         ]
+        # Show each feature in one of the three columns (wraps after 3)
         for index, (icon, title, desc) in enumerate(items):
             with capabilities[index % 3]:
                 st.markdown(f"**{icon} {title}**")
                 st.caption(desc)
 
         st.markdown("---")
-        st.markdown("### Architecture")
+        st.markdown("### Architecture")  # Section showing folder structure
 
+        # Display the project folder layout as a code block
         st.code(
             """
 supply_chain_predictor/
@@ -77,7 +81,7 @@ supply_chain_predictor/
         )
 
         st.markdown("---")
-        st.markdown("### Roadmap")
+        st.markdown("### Roadmap")  # Planned future work
         st.markdown(
             """
             - [x] Dashboard foundation with placeholder data
@@ -89,4 +93,4 @@ supply_chain_predictor/
         )
 
         st.markdown("---")
-        st.caption("Built with Python · Streamlit · Plotly · Pandas · NumPy")
+        st.caption("Built with Python · Streamlit · Plotly · Pandas · NumPy")  # Footer

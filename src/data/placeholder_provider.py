@@ -5,20 +5,21 @@ When no real CSV file is loaded, this creates sample suppliers,
 scores, and charts so you can still explore the app.
 """
 
-from __future__ import annotations
+from __future__ import annotations  # Modern type hint support
 
-from datetime import date, timedelta
+from datetime import date, timedelta  # For generating dates
 
-import numpy as np
-import pandas as pd
+import numpy as np  # Random number generator for fake data
+import pandas as pd  # Table data library
 
-from config.settings import get_settings
+from config.settings import get_settings  # App settings (includes random seed)
 from src.models.metrics import KPIMetrics, SupplierRecord
 
 
 class PlaceholderDataProvider:
     """Provides synthetic supply chain data with a fixed random seed."""
 
+    # List of fake company names used in demo data
     SUPPLIER_NAMES: tuple[str, ...] = (
         "Nova Components Ltd.",
         "Pacific Steel Co.",
@@ -30,6 +31,7 @@ class PlaceholderDataProvider:
         "BlueRiver Logistics",
     )
 
+    # World regions assigned to suppliers
     REGIONS: tuple[str, ...] = (
         "North America",
         "Europe",
@@ -37,6 +39,7 @@ class PlaceholderDataProvider:
         "Latin America",
     )
 
+    # Product categories assigned to suppliers
     CATEGORIES: tuple[str, ...] = (
         "Raw Materials",
         "Electronics",
@@ -48,7 +51,7 @@ class PlaceholderDataProvider:
     def __init__(self, seed: int | None = None) -> None:
         settings = get_settings()
         self._seed = seed if seed is not None else settings.random_seed
-        self._rng = np.random.default_rng(self._seed)
+        self._rng = np.random.default_rng(self._seed)  # Random generator (same seed = same data)
 
     def get_kpi_metrics(self) -> KPIMetrics:
         """Return aggregate KPI metrics for the executive dashboard."""
@@ -65,7 +68,7 @@ class PlaceholderDataProvider:
         base_date = date.today()
 
         for index, name in enumerate(self.SUPPLIER_NAMES):
-            has_disruption = bool(self._rng.integers(0, 2))
+            has_disruption = bool(self._rng.integers(0, 2))  # Randomly decide if they had a disruption
             suppliers.append(
                 SupplierRecord(
                     supplier_id=f"SUP-{1000 + index}",

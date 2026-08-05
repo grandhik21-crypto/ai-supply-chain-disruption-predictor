@@ -1,15 +1,15 @@
-# Streamlit configuration for the Supply Chain Disruption Predictor web app.
-# Controls theme colors, server behavior, and browser settings.
+# Settings for how the website looks and runs.
+# Changes colors, fonts, and basic browser behavior.
 
 [server]
-headless = true
+headless = true  # Run without trying to open a browser window automatically
 
 [browser]
-gatherUsageStats = false
+gatherUsageStats = false  # Don't send usage stats to Streamlit
 
 [theme]
-primaryColor = "#2563eb"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f8fafc"
-textColor = "#0f172a"
-font = "sans serif"
+primaryColor = "#2563eb"  # Main blue color for buttons and highlights
+backgroundColor = "#ffffff"  # White page background
+secondaryBackgroundColor = "#f8fafc"  # Light gray for sidebar and cards
+textColor = "#0f172a"  # Dark text color
+font = "sans serif"  # Font family for the whole app

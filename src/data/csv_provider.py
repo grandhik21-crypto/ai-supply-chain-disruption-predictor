@@ -5,13 +5,13 @@ Reads and cleans the CSV, then provides the same kind of
 numbers and tables that the demo data provides.
 """
 
-from __future__ import annotations
+from __future__ import annotations  # Modern type hint support
 
-from datetime import date
-from pathlib import Path
+from datetime import date  # For today's date in forecasts
+from pathlib import Path  # For CSV file paths
 
-import numpy as np
-import pandas as pd
+import numpy as np  # Math library for forecasts
+import pandas as pd  # Table data library
 
 from src.data.data_loader import DEFAULT_DATA_PATH, SupplyChainDataLoader
 from src.models.metrics import KPIMetrics, SupplierRecord
@@ -20,6 +20,7 @@ from src.models.metrics import KPIMetrics, SupplierRecord
 class CsvDataProvider:
     """Loads cleaned supply chain data from CSV via the ingestion pipeline."""
 
+    # Maps internal column names to nice display names for the website tables
     _DISPLAY_COLUMN_MAP: dict[str, str] = {
         "supplier_id": "Supplier ID",
         "supplier_name": "Name",
@@ -37,26 +38,28 @@ class CsvDataProvider:
         file_path: Path | str | None = None,
         loader: SupplyChainDataLoader | None = None,
     ) -> None:
+        # Create a data loader for the given CSV path (or use default sample file)
         self._loader = loader or SupplyChainDataLoader(
             file_path=Path(file_path) if file_path else DEFAULT_DATA_PATH
         )
-        self._df: pd.DataFrame | None = None
+        self._df: pd.DataFrame | None = None  # Cache: data loaded once, reused after
 
     @property
     def dataframe(self) -> pd.DataFrame:
         """Lazy-load and cache the cleaned DataFrame."""
         if self._df is None:
-            self._df = self._loader.load()
+            self._df = self._loader.load()  # Load and clean CSV on first access
         return self._df
 
     def reload(self) -> pd.DataFrame:
         """Force reload from disk."""
-        self._df = self._loader.load()
+        self._df = self._loader.load()  # Read CSV again (ignores cache)
         return self._df
 
     def get_kpi_metrics(self) -> KPIMetrics:
         """Compute aggregate KPI metrics from ingested data."""
         df = self.dataframe
+        # Average each numeric column across all suppliers
         return KPIMetrics(
             risk_score=round(float(df["risk_score"].mean()), 1),
             lead_time=round(float(df["lead_time_days"].mean()), 1),
@@ -67,8 +70,9 @@ class CsvDataProvider:
     def get_suppliers(self) -> list[SupplierRecord]:
         """Convert ingested rows to SupplierRecord domain objects."""
         records: list[SupplierRecord] = []
-        for row in self.dataframe.itertuples(index=False):
+        for row in self.dataframe.itertuples(index=False):  # Loop each CSV row
             last_disruption = row.last_disruption
+            # Convert datetime to date, or None if missing
             disruption_date = (
                 last_disruption.date()
                 if pd.notna(last_disruption)
@@ -92,6 +96,7 @@ class CsvDataProvider:
     def get_suppliers_dataframe(self) -> pd.DataFrame:
         """Return suppliers formatted for dashboard display."""
         df = self.dataframe.copy()
+        # Pick display columns and rename them for the website table
         display_df = df[list(self._DISPLAY_COLUMN_MAP.keys())].rename(
             columns=self._DISPLAY_COLUMN_MAP
         )

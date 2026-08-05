@@ -1,9 +1,9 @@
-# Sample supply chain dataset for the web application.
+# Sample data file for this project
 
-`supply_chain.csv` is the default CSV loaded by `SupplyChainDataLoader` when
-the dashboard runs in CSV mode (`SupplyChainAnalyticsService(use_csv=True)`).
+`supply_chain.csv` is example spreadsheet data with info about suppliers.
 
-It contains 10 supplier rows with intentional data quality issues (missing
-values, mixed date formats) to demonstrate the ingestion pipeline.
+The app can read this file to show real data instead of fake demo data.
+It has 10 sample suppliers, including some missing values on purpose
+so you can see how the app cleans up messy data.
 
-Required columns match the schema in `src/data/preprocessing.py`.
+The file needs certain column names — see `src/data/preprocessing.py` for the list.

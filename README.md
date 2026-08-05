@@ -8,7 +8,9 @@ A production-quality foundation for predicting supply chain disruptions. The app
 
 ## Project Structure
 
-Each source file includes a module docstring describing its role in the web application.
+Each source file has:
+1. A short description at the top explaining what the file does
+2. Line-by-line `#` comments explaining what each part of the code does
 
 ```
 ├── app/                        # Streamlit UI layer

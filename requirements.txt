@@ -1,7 +1,7 @@
-# Python dependencies for the AI Supply Chain Disruption Predictor web app.
-# Install with: python3 -m pip install -r requirements.txt
+# List of Python packages this website needs.
+# Install them with: python3 -m pip install -r requirements.txt
 
-streamlit>=1.32.0,<2.0.0   # Web dashboard framework
-plotly>=5.18.0,<6.0.0      # Interactive charts on all dashboard pages
-pandas>=2.1.0,<3.0.0       # CSV ingestion and data processing
-numpy>=1.26.0,<3.0.0       # Numerical operations for placeholder data
+streamlit>=1.32.0,<2.0.0   # Builds the website
+plotly>=5.18.0,<6.0.0      # Makes the interactive charts
+pandas>=2.1.0,<3.0.0       # Reads and works with CSV spreadsheet data
+numpy>=1.26.0,<3.0.0       # Does math for the demo data
