@@ -8,3 +8,6 @@ numpy>=1.26.0,<3.0.0       # Does math for the demo data
 transformers>=4.38.0,<5.0.0  # Hugging Face library for FinBERT sentiment model
 torch>=2.1.0,<3.0.0        # Deep learning backend required by transformers
 sentencepiece>=0.1.99,<1.0.0  # Tokenizer dependency used by FinBERT
+scikit-learn>=1.3.0,<2.0.0 # Train/test split, CV, metrics, hyperparameter tuning
+xgboost>=2.0.0,<3.0.0      # Gradient-boosted model for disruption prediction
+joblib>=1.3.0,<2.0.0       # Save and load the trained model file

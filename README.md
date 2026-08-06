@@ -45,6 +45,8 @@ Each source file has:
 │   │   └── sentiment.py        # FinBERT sentiment analysis
 │   ├── features/               # Feature engineering for ML
 │   │   └── feature_engineering.py
+│   ├── ml/                     # Machine learning
+│   │   └── model.py            # XGBoost disruption predictor
 │   ├── services/               # Analytics services
 │   │   └── analytics_service.py
 │   └── utils/                  # Logging & shared utilities
@@ -53,7 +55,8 @@ Each source file has:
 │   └── raw/
 │       ├── supply_chain.csv    # Sample supplier dataset
 │       └── news_articles.csv   # Sample news for sentiment analysis
-│   └── processed/              # Sentiment pipeline output CSVs
+│   └── processed/              # Feature / sentiment output CSVs
+├── models/                     # Saved trained models (joblib)
 ├── .streamlit/
 │   └── config.toml             # Streamlit theme & config
 └── requirements.txt
@@ -153,6 +156,31 @@ ml_df = pipeline.run_pipeline()
 - `negative_news_count_7d` — rolling count of negative articles
 
 Output: `data/processed/ml_features.csv`
+
+## Machine Learning Pipeline (XGBoost)
+
+Train a shipment disruption classifier:
+
+```bash
+python3 scripts/train_model.py
+```
+
+```python
+from src.ml.model import DisruptionPredictor
+
+predictor = DisruptionPredictor()
+metrics = predictor.run_pipeline()
+print(metrics.as_dict())
+```
+
+**Pipeline steps:**
+1. Load engineered features
+2. Create / use disruption labels (`0` = normal, `1` = disruption)
+3. Train/test split (80/20, stratified)
+4. 5-fold cross-validation
+5. Hyperparameter tuning (`GridSearchCV`)
+6. Evaluate Accuracy, Precision, Recall, F1, ROC-AUC
+7. Save model to `models/disruption_xgb.joblib`
 
 ## Pages
 

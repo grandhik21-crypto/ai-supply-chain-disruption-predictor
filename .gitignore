@@ -217,5 +217,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Generated sentiment output (recreated by scripts/run_sentiment.py)
+# Generated sentiment / feature output (recreated by scripts)
 data/processed/*.csv
+
+# Trained model binaries (recreated by scripts/train_model.py)
+models/*.joblib
+models/*.pkl
