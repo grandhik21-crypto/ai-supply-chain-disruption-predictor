@@ -9,6 +9,7 @@ from __future__ import annotations  # Modern type hint support
 
 import streamlit as st  # Website UI library
 
+from app.components.ui import metric_card, section_header
 from app.views.base_page import BasePage  # Shared page template
 from config.settings import get_settings  # App name and version
 
@@ -24,43 +25,41 @@ class AboutPage(BasePage):
     def icon(self) -> str:
         return "ℹ️"  # Info emoji
 
+    @property
+    def subtitle(self) -> str:
+        return "What this app does, how it works, and what's next"
+
     def render_content(self) -> None:
         settings = get_settings()  # Load app title and version
 
         # Main project description block
         st.markdown(
             f"""
-            ### {settings.title}
+            **{settings.title}** · version {settings.version}
 
-            **Version:** {settings.version}
-
-            An AI-powered platform for predicting and mitigating supply chain disruptions
-            using natural language processing, machine learning, and industrial engineering
-            analytics.
+            A platform that predicts and helps prevent supply chain disruptions using
+            natural language processing, machine learning, and supply chain analytics.
             """
         )
 
-        st.markdown("---")  # Divider
-        st.markdown("### Key Capabilities")  # Section heading
+        section_header("✨", "Key capabilities", "What the app can do today.")
 
         capabilities = st.columns(3)  # Three columns for feature cards
         # List of (emoji, title, short description) for each feature
         items = [
             ("🔮", "Disruption Prediction", "Forecast supply chain risks using ML models."),
-            ("📰", "Sentiment Analysis", "Monitor news and market signals in real time."),
-            ("📦", "Inventory Intelligence", "Track coverage and buffer adequacy."),
+            ("📰", "Sentiment Analysis", "Track news and market mood with FinBERT."),
+            ("📦", "Inventory Intelligence", "Watch stock coverage and buffer levels."),
             ("🌍", "Regional Analytics", "Compare lead times and risk across regions."),
-            ("🏭", "Supplier Scoring", "Rank suppliers by composite risk metrics."),
-            ("📈", "Interactive Dashboards", "Explore insights with Plotly visualizations."),
+            ("🏭", "Supplier Scoring", "Rank suppliers by combined risk measures."),
+            ("🧠", "Explainable AI", "See why the model made each prediction (SHAP)."),
         ]
         # Show each feature in one of the three columns (wraps after 3)
         for index, (icon, title, desc) in enumerate(items):
             with capabilities[index % 3]:
-                st.markdown(f"**{icon} {title}**")
-                st.caption(desc)
+                metric_card(label=title, value=icon, caption=desc)
 
-        st.markdown("---")
-        st.markdown("### Architecture")  # Section showing folder structure
+        section_header("🧱", "Architecture", "How the project folders fit together.")
 
         # Display the project folder layout as a code block
         st.code(
@@ -70,29 +69,49 @@ supply_chain_predictor/
 │   ├── main.py             # Home / Dashboard
 │   ├── pages/              # Sidebar page links
 │   ├── views/              # Real page UI code
-│   └── components/         # Charts, KPI cards
+│   └── components/         # Charts, KPI cards, UI helpers
 ├── config/                 # Settings and constants
 ├── src/
-│   ├── data/               # Data providers
-│   ├── nlp/                # Sentiment analysis
+│   ├── data/               # Data loading and cleaning
+│   ├── nlp/                # FinBERT sentiment analysis
 │   ├── features/           # Feature engineering
-│   └── services/           # Business logic
+│   ├── ml/                 # XGBoost model + SHAP
+│   └── services/           # Predictions, reports, analytics
+├── scripts/                # Command-line pipelines
 └── requirements.txt
             """.strip(),
             language="text",
         )
 
-        st.markdown("---")
-        st.markdown("### Roadmap")  # Planned future work
+        section_header("🚀", "Setup order", "Run these once before using the dashboard.")
+        st.code(
+            """
+python3 -m pip install -r requirements.txt
+python3 scripts/run_sentiment.py
+python3 scripts/run_feature_engineering.py
+python3 scripts/train_model.py
+python3 -m streamlit run app/main.py --server.port 8501
+            """.strip(),
+            language="bash",
+        )
+
+        section_header("🗺️", "Roadmap", "What's done and what's coming.")
         st.markdown(
             """
-            - [x] Dashboard foundation with placeholder data
-            - [ ] Integrate live supplier and ERP data feeds
-            - [ ] Train NLP sentiment pipeline on news APIs
-            - [ ] Deploy production ML inference service
-            - [ ] Add alerting and notification workflows
+            - [x] Dashboard foundation
+            - [x] CSV data ingestion and cleaning
+            - [x] FinBERT news sentiment analysis
+            - [x] Feature engineering pipeline
+            - [x] XGBoost disruption model
+            - [x] SHAP explainable AI
+            - [x] Live predictions on the dashboard
+            - [ ] Upload your own supplier data in the app
+            - [ ] Live news and ERP data feeds
+            - [ ] Email / Slack alerting
             """
         )
 
-        st.markdown("---")
-        st.caption("Built with Python · Streamlit · Plotly · Pandas · NumPy")  # Footer
+        st.divider()
+        st.caption(
+            "Built with Python · Streamlit · Plotly · Pandas · scikit-learn · XGBoost · SHAP"
+        )

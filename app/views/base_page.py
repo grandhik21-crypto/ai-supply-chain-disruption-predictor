@@ -13,6 +13,7 @@ import streamlit as st  # Website UI library
 
 # Import chart builder used by all pages
 from app.components.charts import ChartFactory
+from app.components.ui import page_header  # Shared styled page title
 # Import the data helper that pages call for numbers and tables
 from src.services.analytics_service import SupplyChainAnalyticsService
 
@@ -42,22 +43,26 @@ class BasePage(ABC):
         """Emoji icon for the page header."""
         # Each child page must define its icon (e.g. "📊")
 
+    @property
+    def subtitle(self) -> str:
+        """Short description under the page title (pages may override)."""
+        return "AI-powered supply chain disruption intelligence"
+
     @abstractmethod
     def render_content(self) -> None:
         """Render the page-specific content."""
         # Each child page must define what appears below the header
 
     def render(self) -> None:
-        """Render the full page with a consistent header."""
-        # Big heading with icon and page title
-        st.markdown(f"## {self.icon} {self.title}")
-        # Gray subtitle under the title
-        st.markdown(
-            "<p style='color: #64748b; margin-top: -0.5rem;'>"
-            "AI-powered supply chain disruption intelligence"
-            "</p>",
-            unsafe_allow_html=True,
-        )
-        st.markdown("---")  # Divider line before main content
-        # Call the child page's content method
-        self.render_content()
+        """Render the full page with a consistent header and error safety."""
+        page_header(self.icon, self.title, self.subtitle)
+        try:
+            self.render_content()
+        except Exception as exc:
+            # Show a clear message instead of a blank page
+            st.error(
+                f"Something went wrong while loading the **{self.title}** page.",
+                icon="🚨",
+            )
+            with st.expander("Technical details (for developers)"):
+                st.exception(exc)
