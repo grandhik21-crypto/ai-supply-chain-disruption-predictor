@@ -46,7 +46,8 @@ Each source file has:
 │   ├── features/               # Feature engineering for ML
 │   │   └── feature_engineering.py
 │   ├── ml/                     # Machine learning
-│   │   └── model.py            # XGBoost disruption predictor
+│   │   ├── model.py            # XGBoost disruption predictor
+│   │   └── explainability.py   # SHAP explanations for Streamlit
 │   ├── services/               # Analytics services
 │   │   └── analytics_service.py
 │   └── utils/                  # Logging & shared utilities
@@ -181,6 +182,22 @@ print(metrics.as_dict())
 5. Hyperparameter tuning (`GridSearchCV`)
 6. Evaluate Accuracy, Precision, Recall, F1, ROC-AUC
 7. Save model to `models/disruption_xgb.joblib`
+
+## Explainable AI (SHAP)
+
+The **Model Insights** page shows plain-language SHAP explanations:
+
+- **Feature Importance** — which factors matter most overall
+- **SHAP Summary** — how each factor pushes predictions safer or riskier
+- **SHAP Waterfall** — why one supplier/day was scored that way
+
+```python
+from src.ml.explainability import ShapExplainer
+
+explainer = ShapExplainer()
+explainer.load()
+explainer.plot_feature_importance()
+```
 
 ## Pages
 
