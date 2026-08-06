@@ -199,13 +199,45 @@ explainer.load()
 explainer.plot_feature_importance()
 ```
 
+## Live Dashboard Predictions
+
+The **Dashboard** page is driven by the trained model (no placeholder data). Pick a
+supplier from the dropdown and everything updates:
+
+| Panel | What it shows |
+|-------|----------------|
+| Risk score | Business risk score (0–100) with gauge |
+| Delay probability | Model's chance of a shipment disruption |
+| Prediction confidence | How sure the model is about that answer |
+| Historical lead time | Delivery days over time |
+| Sentiment trend | News mood over time (0–1) |
+| Inventory coverage | Days of stock left, with a low-stock line |
+| Top risk factors | SHAP factors that raised or lowered risk |
+| Recommended actions | Plain-language next steps |
+
+```python
+from src.services.prediction_service import SupplierPredictionService
+
+service = SupplierPredictionService()
+service.load()
+prediction = service.get_supplier_prediction("SUP-1000")
+actions = service.get_recommended_actions(prediction)
+```
+
+Requires a trained model:
+
+```bash
+python3 scripts/run_feature_engineering.py
+python3 scripts/train_model.py
+```
+
 ## Pages
 
 | Page | Description |
 |------|-------------|
-| **Dashboard** | KPI cards, risk trends, inventory coverage, sentiment, and disruption forecasts |
+| **Dashboard** | Live per-supplier predictions, gauges, history charts, risk factors, recommended actions |
 | **Supplier Analysis** | Supplier scatter plots, regional lead times, high-risk registry |
-| **Model Insights** | Feature importance, confusion matrix, forecast outputs |
+| **Model Insights** | SHAP feature importance, summary, waterfall explanations |
 | **About** | Project overview, architecture, and roadmap |
 
 ## KPI Metrics
