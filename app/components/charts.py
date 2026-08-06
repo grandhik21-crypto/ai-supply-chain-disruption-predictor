@@ -127,6 +127,142 @@ class ChartFactory:
         )
         return fig
 
+    # ------------------------------------------------------------------
+    # Live model prediction charts (used by the Dashboard)
+    # ------------------------------------------------------------------
+
+    def risk_gauge(self, risk_score: float) -> go.Figure:
+        """Speedometer-style gauge showing the supplier's risk score (0–100)."""
+        fig = go.Figure(
+            go.Indicator(
+                mode="gauge+number",
+                value=risk_score,
+                number={"suffix": " /100"},
+                title={"text": "Risk Score"},
+                gauge={
+                    "axis": {"range": [0, 100]},
+                    "bar": {"color": "#1e293b"},
+                    # Green = safe, yellow = watch, red = risky
+                    "steps": [
+                        {"range": [0, 40], "color": "#bbf7d0"},
+                        {"range": [40, 70], "color": "#fde68a"},
+                        {"range": [70, 100], "color": "#fecaca"},
+                    ],
+                },
+            )
+        )
+        fig.update_layout(
+            template=self._TEMPLATE,
+            height=260,
+            margin=dict(l=20, r=20, t=50, b=10),
+        )
+        return fig
+
+    def delay_probability_gauge(self, probability: float) -> go.Figure:
+        """Gauge showing the model's chance of a delay/disruption (0–100%)."""
+        pct = float(probability) * 100
+        color = "#ef4444" if pct >= 70 else "#f59e0b" if pct >= 40 else "#10b981"
+        fig = go.Figure(
+            go.Indicator(
+                mode="gauge+number",
+                value=pct,
+                number={"suffix": "%"},
+                title={"text": "Delay Probability"},
+                gauge={
+                    "axis": {"range": [0, 100]},
+                    "bar": {"color": color},
+                    "steps": [
+                        {"range": [0, 40], "color": "#ecfdf5"},
+                        {"range": [40, 70], "color": "#fffbeb"},
+                        {"range": [70, 100], "color": "#fef2f2"},
+                    ],
+                },
+            )
+        )
+        fig.update_layout(
+            template=self._TEMPLATE,
+            height=260,
+            margin=dict(l=20, r=20, t=50, b=10),
+        )
+        return fig
+
+    def lead_time_history(self, df: pd.DataFrame) -> go.Figure:
+        """Line chart of this supplier's historical delivery times."""
+        fig = px.line(
+            df,
+            x="Date",
+            y="Lead Time (days)",
+            markers=True,
+            title="Historical Lead Time",
+            color_discrete_sequence=[self._COLOR_PRIMARY],
+        )
+        return self._apply_layout(fig, y_title="Days to deliver")
+
+    def sentiment_history(self, df: pd.DataFrame) -> go.Figure:
+        """Line chart of this supplier's news sentiment over time."""
+        fig = px.line(
+            df,
+            x="Date",
+            y="Sentiment Score",
+            markers=True,
+            title="Sentiment Trend (news mood)",
+            color_discrete_sequence=[self._COLOR_SECONDARY],
+        )
+        fig.update_yaxes(range=[0, 1])
+        # Middle line = neutral news
+        fig.add_hline(y=0.5, line_dash="dash", line_color="#94a3b8")
+        return self._apply_layout(fig, y_title="0 = bad news, 1 = good news")
+
+    def inventory_history(self, df: pd.DataFrame) -> go.Figure:
+        """Area chart of days of inventory left over time."""
+        fig = px.area(
+            df,
+            x="Date",
+            y="Inventory Coverage (days)",
+            title="Inventory Coverage",
+            color_discrete_sequence=[self._COLOR_SUCCESS],
+        )
+        # Warning line: below 15 days is low stock
+        fig.add_hline(
+            y=15,
+            line_dash="dash",
+            line_color="#ef4444",
+            annotation_text="Low stock (15 days)",
+        )
+        return self._apply_layout(fig, y_title="Days of stock")
+
+    def delay_probability_history(self, df: pd.DataFrame) -> go.Figure:
+        """Line chart of the model's predicted delay probability over time."""
+        fig = px.line(
+            df,
+            x="Date",
+            y="Delay Probability (%)",
+            title="Predicted Delay Probability Over Time",
+            color_discrete_sequence=[self._COLOR_WARNING],
+        )
+        fig.update_yaxes(range=[0, 100])
+        fig.add_hline(y=50, line_dash="dash", line_color="#94a3b8")
+        return self._apply_layout(fig, y_title="Chance of delay (%)")
+
+    def top_risk_factors(self, df: pd.DataFrame) -> go.Figure:
+        """Bar chart of what pushed this supplier's risk up or down."""
+        fig = px.bar(
+            df,
+            x="Impact",
+            y="Factor",
+            orientation="h",
+            title="Top Risk Factors (why the model decided this)",
+            color="Direction",
+            color_discrete_map={
+                "Increases risk": "#ef4444",  # red
+                "Reduces risk": "#3b82f6",  # blue
+            },
+        )
+        fig.add_vline(x=0, line_width=1, line_dash="dash", line_color="#94a3b8")
+        return self._apply_layout(
+            fig, x_title="← Reduces risk        Increases risk →"
+        )
+
     def _apply_layout(
         self,
         fig: go.Figure,

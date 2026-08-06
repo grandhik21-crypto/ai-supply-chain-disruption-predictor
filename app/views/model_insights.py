@@ -74,7 +74,7 @@ class ModelInsightsPage(BasePage):
             return
 
         try:
-            explainer = self._get_explainer()
+            explainer = _load_shap_explainer()
             self._render_shap_section(explainer)
         except Exception as exc:
             st.error("Could not build SHAP explanations.")
@@ -93,7 +93,7 @@ class ModelInsightsPage(BasePage):
 
         st.markdown("### Model Notes")
         st.info(
-            "Explanations below come from the trained XGBoost model using SHAP. "
+            "Explanations come from the trained XGBoost model using SHAP. "
             "Demo labels are used until real disruption history is available.",
             icon="ℹ️",
         )
@@ -110,8 +110,6 @@ class ModelInsightsPage(BasePage):
 
         if DEFAULT_MODEL_PATH.exists():
             try:
-                predictor = DisruptionPredictor()
-                predictor.load_model()
                 import joblib
 
                 payload = joblib.load(DEFAULT_MODEL_PATH)
@@ -128,13 +126,6 @@ class ModelInsightsPage(BasePage):
         for col, (label, value) in zip(metric_cols, defaults):
             with col:
                 st.metric(label=label, value=value)
-
-    @st.cache_resource(show_spinner="Computing SHAP explanations...")
-    def _get_explainer(_self) -> ShapExplainer:
-        """Load SHAP explainer once and reuse it (faster page reloads)."""
-        explainer = ShapExplainer()
-        explainer.load()
-        return explainer
 
     def _render_shap_section(self, explainer: ShapExplainer) -> None:
         """Draw Feature Importance, Summary, and Waterfall charts."""

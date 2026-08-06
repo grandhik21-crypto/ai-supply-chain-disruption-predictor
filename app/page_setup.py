@@ -60,19 +60,18 @@ def render_shared_sidebar() -> None:
         st.caption("Use the page links above to switch screens.")
         st.markdown("---")
         st.caption("Data Source")
-        st.info("Placeholder data · Demo mode", icon="ℹ️")
-        st.markdown("---")
-        st.caption("Filters")
-        st.selectbox(
-            "Region",
-            ["All Regions", "North America", "Europe", "Asia-Pacific", "Latin America"],
-            key="filter_region",
-        )
-        st.selectbox(
-            "Time Horizon",
-            ["Last 30 days", "Last 90 days", "Last 12 months"],
-            key="filter_horizon",
-        )
+        _render_data_source_status()
+
+
+def _render_data_source_status() -> None:
+    """Tell the user whether live model predictions are available."""
+    from src.ml.model import DEFAULT_MODEL_PATH
+
+    if DEFAULT_MODEL_PATH.exists():
+        st.success("Live model predictions", icon="🤖")
+    else:
+        st.warning("No trained model yet", icon="⚠️")
+        st.caption("Run `python3 scripts/train_model.py`")
 
 
 def inject_global_styles() -> None:
