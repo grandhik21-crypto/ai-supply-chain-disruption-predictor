@@ -86,7 +86,7 @@ def _render_data_source_status() -> None:
         st.success("Live model predictions", icon="🤖")
     else:
         st.warning("No trained model yet", icon="⚠️")
-        st.caption("Run `python3 scripts/train_model.py`")
+        st.caption("Use the Dashboard setup button or `python3 scripts/bootstrap.py`")
 
     if not DEFAULT_ML_OUTPUT_PATH.exists():
         st.caption("⚠️ Missing features file — run the feature pipeline.")
