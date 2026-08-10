@@ -5,6 +5,14 @@ This thin file exists so Streamlit shows a page link in the sidebar.
 The real UI lives in app/views/supplier_analysis.py.
 """
 
+import sys
+from pathlib import Path
+
+# Make the project root importable when Streamlit runs this page directly.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from app.page_setup import (
     configure_page,
     ensure_project_root_on_path,
