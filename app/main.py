@@ -7,6 +7,15 @@ Run with: python3 -m streamlit run app/main.py
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Make the project root importable when Streamlit runs this file directly.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+
 from app.page_setup import (
     configure_page,
     ensure_project_root_on_path,
