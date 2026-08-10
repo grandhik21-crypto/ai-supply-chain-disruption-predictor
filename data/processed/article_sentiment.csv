@@ -1,0 +1,11 @@
+supplier_id,published_date,headline,sentiment_label,confidence,sentiment_score
+SUP-1000,2025-07-01,Nova Components beats earnings expectations,positive,0.9587,0.9793
+SUP-1000,2025-07-01,Chip shortage fears ease for Nova Components,positive,0.9093,0.9546
+SUP-1001,2025-07-02,Steel prices surge amid Asia-Pacific supply crunch,negative,0.9587,0.0207
+SUP-1001,2025-07-03,Pacific Steel warns of production delays,negative,0.9725,0.0137
+SUP-1002,2025-07-02,EuroLogistics expands European freight network,positive,0.9548,0.9774
+SUP-1003,2025-07-03,Atlas Semiconductors faces export restrictions,negative,0.9739,0.0131
+SUP-1003,2025-07-03,Analysts cut outlook for Atlas Semiconductors,negative,0.9733,0.0133
+SUP-1005,2025-07-04,Summit Chemicals plant inspection raises safety flags,negative,0.9587,0.0207
+SUP-1005,2025-07-04,Summit Chemicals reassures customers on supply continuity,positive,0.8069,0.9034
+SUP-1000,2025-07-05,Nova Components secures long-term supplier contract,positive,0.9566,0.9783

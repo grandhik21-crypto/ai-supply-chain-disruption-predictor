@@ -39,17 +39,14 @@ from sklearn.model_selection import (
 )
 from xgboost import XGBClassifier  # Gradient-boosted tree model
 
+from config.settings import MODEL_PATH, RANDOM_SEED  # Configurable model path/seed
 from src.features.feature_engineering import DEFAULT_ML_OUTPUT_PATH
 from src.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
-# Where the trained model file is saved
-DEFAULT_MODEL_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "models"
-    / "disruption_xgb.joblib"
-)
+# Where the trained model file is saved (override with SC_MODEL_PATH)
+DEFAULT_MODEL_PATH = MODEL_PATH
 
 # Numeric columns used as model inputs (features)
 NUMERIC_FEATURES: tuple[str, ...] = (
@@ -122,7 +119,7 @@ class DisruptionPredictor:
     features_path: Path = field(default_factory=lambda: DEFAULT_ML_OUTPUT_PATH)
     model_path: Path = field(default_factory=lambda: DEFAULT_MODEL_PATH)
     test_size: float = 0.2  # 20% of data held out for testing
-    random_state: int = 42  # Makes train/test split reproducible
+    random_state: int = RANDOM_SEED  # Makes train/test split reproducible
     cv_folds: int = 5  # Number of cross-validation folds
     param_grid: dict[str, list] = field(default_factory=lambda: dict(DEFAULT_PARAM_GRID))
 
@@ -236,16 +233,41 @@ class DisruptionPredictor:
     # Step 3–5: Split, cross-validate, tune, train
     # ------------------------------------------------------------------
 
+    @staticmethod
+    def _min_class_count(y: pd.Series) -> int:
+        """Size of the smallest class — limits how many CV folds are possible."""
+        counts = y.value_counts()
+        return int(counts.min()) if not counts.empty else 0
+
+    def _usable_cv_folds(self, y: pd.Series) -> int:
+        """
+        Pick a fold count this dataset can actually support.
+
+        Stratified k-fold needs at least k examples of every class, so small
+        or heavily imbalanced datasets need fewer folds (or none at all).
+        """
+        min_count = self._min_class_count(y)
+        if min_count < 2:
+            return 0  # Cross-validation is impossible with a single-member class
+        return max(2, min(self.cv_folds, min_count))
+
     def split_train_test(
         self, X: pd.DataFrame, y: pd.Series
     ) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
         """Step 3 — Split data into train (80%) and test (20%) sets."""
+        # Stratifying needs at least 2 examples per class; fall back if not
+        stratify = y if self._min_class_count(y) >= 2 else None
+        if stratify is None:
+            logger.warning(
+                "Not enough examples per class to stratify — using a random split."
+            )
+
         X_train, X_test, y_train, y_test = train_test_split(
             X,
             y,
             test_size=self.test_size,
             random_state=self.random_state,
-            stratify=y,  # Keep same disruption % in train and test
+            stratify=stratify,  # Keep same disruption % in train and test
         )
         logger.info(
             "Train/test split: train=%d, test=%d",
@@ -272,9 +294,29 @@ class DisruptionPredictor:
         Splits training data into cv_folds parts, trains on each fold,
         and reports average accuracy / F1 / ROC-AUC.
         """
-        logger.info("Running %d-fold cross-validation...", self.cv_folds)
+        folds = self._usable_cv_folds(y_train)
+        if folds == 0:
+            logger.warning(
+                "Skipping cross-validation: the smallest class has fewer than "
+                "2 examples in the training set."
+            )
+            return {
+                "cv_accuracy_mean": 0.0,
+                "cv_accuracy_std": 0.0,
+                "cv_f1_mean": 0.0,
+                "cv_roc_auc_mean": 0.0,
+            }
+
+        if folds < self.cv_folds:
+            logger.warning(
+                "Reducing cross-validation folds from %d to %d (small class size).",
+                self.cv_folds,
+                folds,
+            )
+
+        logger.info("Running %d-fold cross-validation...", folds)
         cv = StratifiedKFold(
-            n_splits=self.cv_folds,
+            n_splits=folds,
             shuffle=True,
             random_state=self.random_state,
         )
@@ -310,9 +352,20 @@ class DisruptionPredictor:
         Uses GridSearchCV with stratified cross-validation.
         Scoring metric: F1 (balances precision and recall).
         """
+        folds = self._usable_cv_folds(y_train)
+        if folds == 0:
+            # Not enough data per class to search — train a single default model
+            logger.warning(
+                "Skipping hyperparameter search (too few examples per class). "
+                "Training a default model instead."
+            )
+            model = self._base_estimator()
+            model.fit(X_train, y_train)
+            return model
+
         logger.info("Tuning hyperparameters with GridSearchCV...")
         cv = StratifiedKFold(
-            n_splits=min(self.cv_folds, 3),  # slightly fewer folds for speed
+            n_splits=min(folds, 3),  # slightly fewer folds for speed
             shuffle=True,
             random_state=self.random_state,
         )
@@ -371,12 +424,22 @@ class DisruptionPredictor:
         y_pred = self.model.predict(X_test)
         y_proba = self.model.predict_proba(X_test)[:, 1]
 
+        # ROC-AUC needs both classes present in the test set
+        if y_test.nunique() < 2:
+            logger.warning(
+                "Test set contains only one class — ROC-AUC is not defined; "
+                "reporting 0.0."
+            )
+            roc_auc = 0.0
+        else:
+            roc_auc = float(roc_auc_score(y_test, y_proba))
+
         metrics = ModelMetrics(
             accuracy=round(float(accuracy_score(y_test, y_pred)), 4),
             precision=round(float(precision_score(y_test, y_pred, zero_division=0)), 4),
             recall=round(float(recall_score(y_test, y_pred, zero_division=0)), 4),
             f1=round(float(f1_score(y_test, y_pred, zero_division=0)), 4),
-            roc_auc=round(float(roc_auc_score(y_test, y_proba)), 4),
+            roc_auc=round(roc_auc, 4),
             cv_accuracy_mean=round(float((cv_summary or {}).get("cv_accuracy_mean", 0.0)), 4),
             cv_accuracy_std=round(float((cv_summary or {}).get("cv_accuracy_std", 0.0)), 4),
             best_params=best_params or {},

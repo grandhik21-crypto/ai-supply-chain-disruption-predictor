@@ -1,15 +1,23 @@
-# List of Python packages this website needs.
-# Install them with: python3 -m pip install -r requirements.txt
+# Core runtime dependencies for the Streamlit dashboard.
+#
+# Install with:  python3 -m pip install -r requirements.txt
+#
+# This file deliberately EXCLUDES PyTorch and Transformers, which are only
+# needed to (re)generate news sentiment with FinBERT. Keeping them out lets the
+# app deploy on size-limited hosts such as Streamlit Community Cloud.
+# For sentiment analysis, also install requirements-nlp.txt.
 
-streamlit>=1.32.0,<2.0.0   # Builds the website
-plotly>=5.18.0,<6.0.0      # Makes the interactive charts
-pandas>=2.1.0,<3.0.0       # Reads and works with CSV spreadsheet data
-numpy>=1.26.0,<3.0.0       # Does math for the demo data
-transformers>=4.38.0,<5.0.0  # Hugging Face library for FinBERT sentiment model
-torch>=2.1.0,<3.0.0        # Deep learning backend required by transformers
-sentencepiece>=0.1.99,<1.0.0  # Tokenizer dependency used by FinBERT
-scikit-learn>=1.3.0,<2.0.0 # Train/test split, CV, metrics, hyperparameter tuning
-xgboost>=2.0.0,<3.0.0      # Gradient-boosted model for disruption prediction
-joblib>=1.3.0,<2.0.0       # Save and load the trained model file
-shap>=0.44.0,<0.50.0       # Explainable AI (feature importance / SHAP charts)
-kaleido>=0.2.1,<1.0.0      # Exports Plotly charts as PNG images for download
+# --- Web dashboard ---
+streamlit>=1.32.0,<2.0.0      # Builds the web app
+plotly>=5.18.0,<6.0.0         # Interactive charts, gauges, waterfalls
+kaleido>=0.2.1,<1.0.0         # Exports Plotly charts as PNG images
+
+# --- Data handling ---
+pandas>=2.1.0,<3.0.0          # CSV loading and vectorized transformations
+numpy>=1.26.0,<3.0.0          # Numerical computation
+
+# --- Machine learning ---
+scikit-learn>=1.3.0,<2.0.0    # Train/test split, cross-validation, metrics
+xgboost>=2.0.0,<3.0.0         # Gradient-boosted disruption classifier
+joblib>=1.3.0,<2.0.0          # Saves and loads the trained model
+shap>=0.44.0,<0.50.0          # Explainable AI (SHAP charts)

@@ -21,6 +21,7 @@ from app.components.ui import (
     section_header,
 )
 from app.views.base_page import BasePage  # Shared page template
+from config.settings import ALLOW_TRAINING_IN_APP  # Lets the app build the model
 from src.services.prediction_service import (
     SupplierPrediction,
     SupplierPredictionService,
@@ -58,16 +59,9 @@ class DashboardPage(BasePage):
     def render_content(self) -> None:
         service = SupplierPredictionService()
 
-        # No trained model yet → show a helpful empty state instead of an error
+        # No trained model yet → offer to build it, or explain how
         if not service.model_available:
-            empty_state(
-                title="No trained model yet",
-                message=(
-                    "The dashboard needs a trained model before it can show predictions."
-                ),
-                icon="🤖",
-                hint="python3 scripts/run_feature_engineering.py &amp;&amp; python3 scripts/train_model.py",
-            )
+            self._render_setup_needed()
             return
 
         # Spinner while the model + SHAP data load (first run takes longest)
@@ -132,6 +126,54 @@ class DashboardPage(BasePage):
 
         with safe_section("All suppliers overview"):
             self._render_portfolio_section(service)
+
+    # ------------------------------------------------------------------
+    # First-run setup
+    # ------------------------------------------------------------------
+
+    def _render_setup_needed(self) -> None:
+        """
+        Shown when no trained model exists yet (e.g. a fresh deployment).
+
+        Offers a one-click build when training in the app is allowed,
+        and always shows the equivalent terminal commands.
+        """
+        empty_state(
+            title="No trained model yet",
+            message="The dashboard needs a trained model before it can show predictions.",
+            icon="🤖",
+        )
+
+        if ALLOW_TRAINING_IN_APP:
+            st.markdown("**Option 1 — build it now** (takes about 10 seconds)")
+            if st.button("⚙️ Build features and train model", type="primary"):
+                try:
+                    with st.spinner("Building features and training the model…"):
+                        from scripts.bootstrap import bootstrap
+
+                        bootstrap(force=False)
+                    # Clear the cached (empty) service so the new model loads
+                    _load_prediction_service.clear()
+                    st.success("Model ready. Reloading the dashboard…", icon="✅")
+                    st.rerun()
+                except Exception as exc:
+                    st.error("Could not build the model automatically.", icon="🚨")
+                    with st.expander("Technical details (for developers)"):
+                        st.exception(exc)
+
+            st.markdown("**Option 2 — run it in the terminal**")
+        else:
+            st.markdown("**Run these commands, then refresh this page:**")
+
+        st.code(
+            "python3 scripts/run_feature_engineering.py\n"
+            "python3 scripts/train_model.py",
+            language="bash",
+        )
+        st.caption(
+            "Optional: run `python3 scripts/run_sentiment.py` first to include "
+            "news sentiment features (requires the extra NLP dependencies)."
+        )
 
     # ------------------------------------------------------------------
     # Sections

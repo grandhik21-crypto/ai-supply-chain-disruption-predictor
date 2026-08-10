@@ -20,22 +20,24 @@ from pathlib import Path  # For file paths
 import numpy as np  # Vectorized math
 import pandas as pd  # Tables and vectorized group/rolling operations
 
+from config.settings import (  # Configurable paths and window size
+    DAILY_SENTIMENT_CSV,
+    ML_FEATURES_CSV,
+    ROLLING_WINDOW_DAYS,
+)
 from src.data.data_loader import DEFAULT_DATA_PATH, SupplyChainDataLoader
-from src.nlp.sentiment import DEFAULT_DAILY_OUTPUT_PATH
 from src.utils.logging_config import get_logger  # Logging helper
 
 logger = get_logger(__name__)
 
-# Default output path for the ML feature dataset
-DEFAULT_ML_OUTPUT_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "data"
-    / "processed"
-    / "ml_features.csv"
-)
+# Default output path for the ML feature dataset (override with SC_PROCESSED_DIR)
+DEFAULT_ML_OUTPUT_PATH = ML_FEATURES_CSV
 
-# Rolling window size in days (used for all 7-day features)
-ROLLING_WINDOW = 7
+# Where daily sentiment is read from
+DEFAULT_DAILY_OUTPUT_PATH = DAILY_SENTIMENT_CSV
+
+# Rolling window size in days (override with SC_ROLLING_WINDOW)
+ROLLING_WINDOW = ROLLING_WINDOW_DAYS
 
 # Columns kept in the final ML dataset
 FEATURE_COLUMNS: tuple[str, ...] = (

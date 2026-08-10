@@ -12,6 +12,7 @@ from pathlib import Path  # For working with file paths
 
 import pandas as pd  # Reads CSV files into tables
 
+from config.settings import SUPPLY_CHAIN_CSV  # Configurable input path
 # Import cleaning tools and settings from preprocessing.py
 from src.data.preprocessing import (
     DEFAULT_SCHEMA,
@@ -24,8 +25,8 @@ from src.utils.logging_config import get_logger
 
 logger = get_logger(__name__)  # Create a logger for this file
 
-# Default location of the sample CSV file in the project
-DEFAULT_DATA_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "raw" / "supply_chain.csv"
+# Default location of the supplier CSV (override with SC_SUPPLY_CHAIN_CSV)
+DEFAULT_DATA_PATH = SUPPLY_CHAIN_CSV
 
 
 @dataclass

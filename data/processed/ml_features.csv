@@ -1,0 +1,201 @@
+supplier_id,date,region,category,risk_score,rolling_lead_time_7d,lead_time_variance_7d,inventory_coverage,supplier_reliability,rolling_sentiment_7d,sentiment_velocity,negative_news_count_7d,sentiment_score_daily,article_count
+SUP-1000,2025-06-15,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-16,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-17,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-18,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-19,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-20,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-21,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-22,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-23,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-24,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-25,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-26,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-27,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-28,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-29,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-06-30,North America,Electronics,72.5,28.0,0.0,22.0,0.942,,,0,,0
+SUP-1000,2025-07-01,North America,Electronics,72.5,28.0,0.0,22.0,0.942,0.967,,0,0.967,2
+SUP-1000,2025-07-02,North America,Electronics,72.5,28.0,0.0,22.0,0.942,0.967,,0,,0
+SUP-1000,2025-07-03,North America,Electronics,72.5,28.0,0.0,22.0,0.942,0.967,,0,,0
+SUP-1000,2025-07-04,North America,Electronics,72.5,28.0,0.0,22.0,0.942,0.967,,0,,0
+SUP-1000,2025-07-05,North America,Electronics,72.5,28.0,0.0,22.0,0.942,0.9726,,0,0.9783,1
+SUP-1001,2025-07-02,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,0.0207,,1,0.0207,1
+SUP-1001,2025-07-03,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,0.0172,-0.007,2,0.0137,1
+SUP-1002,2025-05-01,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-02,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-03,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-04,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-05,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-06,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-07,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-08,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-09,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-10,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-11,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-12,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-13,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-14,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-15,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-16,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-17,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-18,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-19,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-20,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-21,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-22,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-23,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-24,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-25,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-26,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-27,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-28,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-29,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-30,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-05-31,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-01,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-02,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-03,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-04,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-05,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-06,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-07,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-08,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-09,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-10,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-11,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-12,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-13,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-14,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-15,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-16,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-17,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-18,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-19,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-20,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-21,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-22,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-23,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-24,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-25,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-26,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-27,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-28,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-29,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-06-30,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-07-01,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,,,0,,0
+SUP-1002,2025-07-02,Europe,Logistics,45.2,18.0,0.0,30.0,0.975,0.9774,,0,0.9774,1
+SUP-1003,2025-07-03,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,0.0132,2
+SUP-1003,2025-07-04,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-05,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-06,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-07,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-08,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-09,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,0.0132,,2,,0
+SUP-1003,2025-07-10,Asia-Pacific,Electronics,67.8,42.0,0.0,15.5,0.91,,,0,,0
+SUP-1004,2025-04-18,Latin America,Packaging,58.3,22.0,0.0,18.0,0.855,,,0,,0
+SUP-1005,2025-03-25,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-26,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-27,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-28,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-29,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-30,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-03-31,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-01,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-02,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-03,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-04,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-05,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-06,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-07,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-08,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-09,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-10,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-11,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-12,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-13,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-14,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-15,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-16,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-17,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-18,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-19,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-20,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-21,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-22,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-23,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-24,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-25,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-26,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-27,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-28,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-29,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-04-30,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-01,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-02,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-03,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-04,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-05,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-06,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-07,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-08,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-09,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-10,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-11,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-12,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-13,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-14,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-15,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-16,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-17,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-18,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-19,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-20,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-21,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-22,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-23,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-24,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-25,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-26,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-27,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-28,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-29,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-30,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-05-31,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-01,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-02,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-03,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-04,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-05,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-06,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-07,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-08,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-09,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-10,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-11,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-12,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-13,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-14,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-15,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-16,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-17,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-18,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-19,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-20,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-21,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-22,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-23,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-24,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-25,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-26,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-27,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-28,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-29,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-06-30,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-07-01,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-07-02,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-07-03,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,,,0,,0
+SUP-1005,2025-07-04,North America,Chemicals,91.2,48.0,0.0,10.0,0.76,0.462,,2,0.462,2
+SUP-1006,2025-06-01,Europe,Electronics,67.8,31.0,0.0,25.0,0.93,,,0,,0
+SUP-1008,2025-02-14,North America,Raw Materials,78.5,38.0,0.0,14.0,0.82,,,0,,0
+SUP-1009,2025-05-20,Asia-Pacific,Logistics,63.0,26.0,0.0,20.0,0.91,,,0,,0

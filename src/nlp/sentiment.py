@@ -19,20 +19,25 @@ from pathlib import Path  # For file paths
 
 import pandas as pd  # For tables and CSV export
 
+from config.settings import (  # Configurable paths and model name
+    ARTICLE_SENTIMENT_CSV,
+    DAILY_SENTIMENT_CSV,
+    FINBERT_MODEL,
+    PROCESSED_DATA_DIR,
+)
 from src.models.sentiment import ArticleSentimentResult, NewsArticle
 from src.utils.logging_config import get_logger  # Logging helper
 
 logger = get_logger(__name__)  # Logger for this module
 
 # Hugging Face model name — FinBERT is trained on financial news text
-FINBERT_MODEL_NAME = "ProsusAI/finbert"
+# Override with the SC_FINBERT_MODEL environment variable
+FINBERT_MODEL_NAME = FINBERT_MODEL
 
 # Default folder for saving processed sentiment CSV files
-DEFAULT_OUTPUT_DIR = (
-    Path(__file__).resolve().parent.parent.parent / "data" / "processed"
-)
-DEFAULT_DAILY_OUTPUT_PATH = DEFAULT_OUTPUT_DIR / "daily_supplier_sentiment.csv"
-DEFAULT_ARTICLE_OUTPUT_PATH = DEFAULT_OUTPUT_DIR / "article_sentiment.csv"
+DEFAULT_OUTPUT_DIR = PROCESSED_DATA_DIR
+DEFAULT_DAILY_OUTPUT_PATH = DAILY_SENTIMENT_CSV
+DEFAULT_ARTICLE_OUTPUT_PATH = ARTICLE_SENTIMENT_CSV
 
 # Map FinBERT text labels to a single number between 0 and 1
 # Higher = more positive / less risky sentiment

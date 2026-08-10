@@ -273,17 +273,19 @@ ai-supply-chain-disruption-predictor/
 │   ├── raw/
 │   │   ├── supply_chain.csv              # Sample supplier metrics
 │   │   └── news_articles.csv             # Sample supplier news
-│   └── processed/                        # Generated artifacts (gitignored)
+│   └── processed/                        # Demo feature / sentiment CSVs (tracked)
 │       ├── article_sentiment.csv          # Per-article FinBERT scores
 │       ├── daily_supplier_sentiment.csv   # Daily aggregated sentiment
 │       └── ml_features.csv               # ML-ready feature table
 │
-├── models/                               # Trained models (gitignored)
-│   └── disruption_xgb.joblib             # Model + feature names + metrics
+├── models/
+│   └── disruption_xgb.joblib             # Demo trained model (tracked for deploy)
 │
 ├── docs/screenshots/                     # README images
 ├── .streamlit/config.toml                # Streamlit theme configuration
-├── requirements.txt                      # Pinned Python dependencies
+├── requirements.txt                      # Runtime Python dependencies (Cloud-safe)
+├── packages.txt                          # apt packages for Streamlit Cloud (OpenMP)
+├── DEPLOYMENT.md                         # Streamlit Cloud / hosting notes
 ├── run.sh                                # Convenience launcher
 └── README.md
 ```
@@ -404,7 +406,7 @@ chmod +x run.sh
 | `command not found: streamlit` | Use `python3 -m streamlit run app/main.py` (the console script may not be on `PATH`) |
 | `Port 8501 is not available` | Run `pkill -f "streamlit run app/main.py"`, then relaunch |
 | `ModuleNotFoundError: No module named 'pandas'` | Dependencies are not installed — rerun `python3 -m pip install -r requirements.txt` |
-| Dashboard shows *"No trained model yet"* | Run steps 4.1 → 4.3 above, then refresh the page |
+| Dashboard shows *"No trained model yet"* | Locally: run `python3 scripts/bootstrap.py`. On a deployed site: the demo model should already be in the repo — redeploy/reboot after pulling latest, or click **Build features and train model** on the Dashboard. See [DEPLOYMENT.md](DEPLOYMENT.md). |
 | First load feels slow | Expected: the app loads the model and computes SHAP values on first render (10–25 s) |
 | `ERR_CONNECTION_RESET` in browser | The server is not running or restarted — relaunch and hard-refresh (`Ctrl+Shift+R`) |
 

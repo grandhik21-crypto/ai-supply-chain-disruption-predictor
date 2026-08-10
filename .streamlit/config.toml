@@ -1,15 +1,33 @@
-# Settings for how the website looks and runs.
-# Changes colors, fonts, and basic browser behavior.
+# Streamlit configuration for the Supply Chain Disruption Predictor.
+#
+# Controls the theme, server behavior, and browser settings.
+# Any value here can be overridden with STREAMLIT_* environment variables
+# (for example STREAMLIT_SERVER_PORT=8080).
 
 [server]
-headless = true  # Run without trying to open a browser window automatically
+headless = true            # Don't try to open a local browser automatically
+enableCORS = false         # Safe default behind a reverse proxy / host platform
+enableXsrfProtection = true
+maxUploadSize = 20         # Megabytes — caps user CSV uploads
+fileWatcherType = "none"   # Lower CPU/memory in production containers
 
 [browser]
-gatherUsageStats = false  # Don't send usage stats to Streamlit
+gatherUsageStats = false   # Don't send usage telemetry
+
+[client]
+showErrorDetails = false   # Hide tracebacks from end users (the app shows
+                           # friendly messages instead; set true when debugging)
+toolbarMode = "minimal"    # Cleaner UI for non-technical viewers
+
+[runner]
+fastReruns = true          # Snappier interaction when changing the dropdown
+
+[logger]
+level = "info"
 
 [theme]
-primaryColor = "#2563eb"  # Main blue color for buttons and highlights
-backgroundColor = "#ffffff"  # White page background
-secondaryBackgroundColor = "#f8fafc"  # Light gray for sidebar and cards
-textColor = "#0f172a"  # Dark text color
-font = "sans serif"  # Font family for the whole app
+primaryColor = "#2563eb"             # Main blue for buttons and highlights
+backgroundColor = "#ffffff"          # White page background
+secondaryBackgroundColor = "#f8fafc" # Light gray for sidebar and cards
+textColor = "#0f172a"                # Dark text color
+font = "sans serif"                  # Font family for the whole app

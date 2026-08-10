@@ -1,6 +1,7 @@
 # Saved machine learning models
 
-Trained models are written here by `scripts/train_model.py`.
+The demo model is **committed** so Streamlit Cloud and fresh clones work without
+a manual train step. Retrain anytime with the commands below.
 
 | File | Description |
 |------|-------------|
@@ -11,9 +12,9 @@ The joblib file includes:
 - feature column names
 - evaluation metrics from the last training run
 
-Train:
+Train / rebuild:
 
 ```bash
-python3 scripts/run_feature_engineering.py   # if features CSV is missing
-python3 scripts/train_model.py
+python3 scripts/bootstrap.py          # build only what's missing
+python3 scripts/bootstrap.py --force  # rebuild features + retrain
 ```

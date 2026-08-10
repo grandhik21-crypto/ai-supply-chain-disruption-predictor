@@ -1,0 +1,3 @@
+# System packages for Streamlit Community Cloud / apt-based hosts.
+# XGBoost needs OpenMP at runtime.
+libgomp1

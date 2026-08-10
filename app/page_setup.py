@@ -67,12 +67,12 @@ def render_shared_sidebar() -> None:
         with st.expander("❓ Need help?"):
             st.markdown(
                 """
-                **Setup order:**
-                1. `python3 scripts/run_sentiment.py`
-                2. `python3 scripts/run_feature_engineering.py`
-                3. `python3 scripts/train_model.py`
+                The demo model ships with the repo. If predictions are missing:
 
-                Then refresh this page.
+                - Click **Build features and train model** on the Dashboard, or
+                - Run `python3 scripts/bootstrap.py` then refresh
+
+                Full hosting notes: see `DEPLOYMENT.md`.
                 """
             )
 

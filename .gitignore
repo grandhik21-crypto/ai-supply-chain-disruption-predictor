@@ -214,12 +214,49 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+# ----------------------------------------------------------------------
 # Streamlit
+# ----------------------------------------------------------------------
+# Real secrets must never be committed (the .example file is tracked)
 .streamlit/secrets.toml
 
-# Generated sentiment / feature output (recreated by scripts)
-data/processed/*.csv
+# ----------------------------------------------------------------------
+# Generated data artifacts
+# ----------------------------------------------------------------------
+# Demo artifacts ARE committed so Streamlit Cloud / fresh clones work without
+# a manual train step. Rebuild locally with: python3 scripts/bootstrap.py
+#
+# Tracked on purpose:
+#   data/processed/ml_features.csv
+#   data/processed/daily_supplier_sentiment.csv
+#   data/processed/article_sentiment.csv
+#   models/disruption_xgb.joblib
 
-# Trained model binaries (recreated by scripts/train_model.py)
-models/*.joblib
+# Any other generated data folders
+data/interim/
+data/external/
+
+# ----------------------------------------------------------------------
+# Local / experimental model dumps (the demo .joblib above is tracked)
+# ----------------------------------------------------------------------
 models/*.pkl
+models/*.json
+models/*.ubj
+models/experiments/
+
+# ----------------------------------------------------------------------
+# Deployment / local tooling
+# ----------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Hugging Face model cache
+.cache/
+huggingface/
+
+# OS noise
+.DS_Store
+Thumbs.db
