@@ -1,0 +1,8 @@
+supplier_id,date,sentiment_label,avg_confidence,sentiment_score,article_count
+SUP-1000,2025-07-01,positive,0.934,0.967,2
+SUP-1000,2025-07-05,positive,0.9566,0.9783,1
+SUP-1001,2025-07-02,negative,0.9587,0.0207,1
+SUP-1001,2025-07-03,negative,0.9725,0.0137,1
+SUP-1002,2025-07-02,positive,0.9548,0.9774,1
+SUP-1003,2025-07-03,negative,0.9736,0.0132,2
+SUP-1005,2025-07-04,negative,0.8828,0.462,2

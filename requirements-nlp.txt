@@ -1,0 +1,17 @@
+# Optional dependencies for FinBERT news sentiment analysis.
+#
+# Only needed to run:  python3 scripts/run_sentiment.py
+# The dashboard itself does NOT need these — it reads the sentiment CSV that
+# the script produces.
+#
+# Install with:
+#   python3 -m pip install -r requirements.txt -r requirements-nlp.txt
+#
+# NOTE: PyTorch is large (~1 GB+ with CUDA). For a much smaller CPU-only
+# install, use the PyTorch CPU index:
+#   python3 -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   python3 -m pip install transformers sentencepiece
+
+transformers>=4.38.0,<5.0.0    # Hugging Face pipeline for FinBERT
+torch>=2.1.0,<3.0.0            # Deep learning backend required by transformers
+sentencepiece>=0.1.99,<1.0.0   # Tokenizer dependency used by FinBERT

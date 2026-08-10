@@ -1,0 +1,11 @@
+supplier_id,supplier_name,region,category,risk_score,lead_time_days,inventory_coverage_days,on_time_delivery_pct,sentiment_score,order_date,last_disruption
+SUP-1000,Nova Components Ltd.,North America,Electronics,72.5,28.0,22.0,94.2,0.71,2025-06-15,2024-11-03
+SUP-1001,Pacific Steel Co.,Asia-Pacific,Raw Materials,85.0,35.5,,88.0,0.55,06/20/2025,
+SUP-1002,EuroLogistics GmbH,Europe,Logistics,45.2,18.0,30.0,97.5,0.82,2025-05-01,2025-01-15
+SUP-1003,Atlas Semiconductors,Asia-Pacific,Electronics,,42.0,15.5,91.0,,2025-07-10,2024-08-22
+SUP-1004,GreenField Packaging,Latin America,Packaging,58.3,22.0,18.0,85.5,0.63,2025-04-18,
+SUP-1005,Summit Chemicals,North America,Chemicals,91.2,48.0,10.0,76.0,0.41,2025-03-25,2025-02-01
+SUP-1006,Horizon Electronics,Europe,Electronics,67.8,31.0,25.0,93.0,0.74,2025-06-01,
+SUP-1007,BlueRiver Logistics,Latin America,Logistics,52.0,20.0,,90.0,0.68,07/05/2025,2024-12-10
+SUP-1008,Prime Materials Inc.,North America,Raw Materials,78.5,38.0,14.0,82.0,0.50,2025-02-14,2024-09-30
+SUP-1009,Global Freight Partners,Asia-Pacific,Logistics,63.0,26.0,20.0,,0.60,2025-05-20,

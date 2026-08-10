@@ -1,0 +1,23 @@
+# Core runtime dependencies for the Streamlit dashboard.
+#
+# Install with:  python3 -m pip install -r requirements.txt
+#
+# This file deliberately EXCLUDES PyTorch and Transformers, which are only
+# needed to (re)generate news sentiment with FinBERT. Keeping them out lets the
+# app deploy on size-limited hosts such as Streamlit Community Cloud.
+# For sentiment analysis, also install requirements-nlp.txt.
+
+# --- Web dashboard ---
+streamlit>=1.32.0,<2.0.0      # Builds the web app
+plotly>=5.18.0,<6.0.0         # Interactive charts, gauges, waterfalls
+kaleido>=0.2.1,<1.0.0         # Exports Plotly charts as PNG images
+
+# --- Data handling ---
+pandas>=2.1.0,<3.0.0          # CSV loading and vectorized transformations
+numpy>=1.26.0,<3.0.0          # Numerical computation
+
+# --- Machine learning ---
+scikit-learn>=1.3.0,<2.0.0    # Train/test split, cross-validation, metrics
+xgboost>=2.0.0,<3.0.0         # Gradient-boosted disruption classifier
+joblib>=1.3.0,<2.0.0          # Saves and loads the trained model
+shap>=0.44.0,<0.50.0          # Explainable AI (SHAP charts)
