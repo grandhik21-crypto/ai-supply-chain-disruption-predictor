@@ -32,7 +32,9 @@ python3 scripts/bootstrap.py
    - **Main file path**: `app/main.py`
 4. Keep the default Python environment using root `requirements.txt`
    (it intentionally **excludes** PyTorch / Transformers so the cloud install fits).
-5. Deploy, then **reboot** the app after the model files land in git.
+5. Root `packages.txt` may list Debian apt packages (one name per line, **no comments** —
+   Streamlit passes lines to `apt-get`, and a `/` in a comment breaks the install).
+6. Deploy, then **reboot** the app after the model files land in git.
 
 Optional secrets (App settings → Secrets), TOML format:
 
